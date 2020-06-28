@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://gui/theme.tres" type="Theme" id=1]
+[ext_resource path="res://levels/EndOfVersion/EndOfVersion.gd" type="Script" id=2]
+
+[node name="EndOfVersion" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -600.0
+margin_bottom = -450.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_right = 200.0
+margin_bottom = 90.0
+theme = ExtResource( 1 )
+text = "THANKS_ALPHA"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="ButtonMainMenu" type="Button" parent="."]
+margin_left = 50.0
+margin_top = 90.0
+margin_right = 150.0
+margin_bottom = 110.0
+mouse_default_cursor_shape = 2
+theme = ExtResource( 1 )
+text = "MAIN_MENU"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonExit" type="Button" parent="."]
+margin_left = 50.0
+margin_top = 115.0
+margin_right = 150.0
+margin_bottom = 135.0
+mouse_default_cursor_shape = 2
+theme = ExtResource( 1 )
+text = "EXIT"
+[connection signal="pressed" from="ButtonMainMenu" to="." method="_on_ButtonMainMenu_pressed"]
+[connection signal="pressed" from="ButtonExit" to="." method="_on_ButtonExit_pressed"]
