@@ -5,4 +5,3 @@
 
 [node name="Dialogue9DarekhBefore" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-dialogue_lines = [ [ "Darek'h", "Fight with Darek'h" ] ]
