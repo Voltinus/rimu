@@ -1,0 +1,48 @@
+string;en;pl;eo
+NEW_GAME;New game;Nowa gra;Nova ludo
+EXIT;Exit;Wyjście;Fermi
+THE_LEGEND_OF;The legend of;Legenda;La legendo de
+ERROR;Error;Błąd;Eraro
+ERROR_MSG;You shouldn’t be able to see this. Please report it to the game creators.;Tiu komunikajxo ne devas aperi. Bonvolu, raporti tio al la ;ERROR_MGS_eo
+STORY1;Once upon a time, there was an academy, adepts of which studied almost everything of magical nature.;Dawno dawno temu istniała pewna akademia, której adepci studiowali niemal wszystko o magicznej naturze.;STORY1_eo
+STORY2;Some knowledge however was strictly forbidden to explore.;Pewna wiedza była jednak surowo zabroniona.;STORY2_eo
+STORY3;Eventually, the tension of imposed bans broke down, and shook the whole academy, as the students' rebelion took more and more lives.;Pewnego dnia, ;STORY3_eo
+STORY4;Rimu, the academy's Librarian, is its last hope.;Rimu, Bibliotekarz Akademii, jest jej ostatnią nadzieją.;STORY4_eo
+DIAL_RIMU1;Feren! You know you don't have to do this.;Feren! Wiesz, że nie musisz tego robić.;DIAL_RIMU1_eo
+DIAL_FEREN1;I know miss Rimu. I really liked you, but I can't let you ruin what we've accomplished.;Wiem pani Rimu. Naprawdę panią lubiłem, ale nie pozwolę pani zrujnować tego, co osiągnęliśmy.;DIAL_FEREN1_eo
+DIAL_RIMU2;Accomplished? You've destroyed most of the Academy!;Osiągnęliście? Zniszczyliście większość Akademii!;DIAL_RIMU2_eo
+DIAL_FEREN2;Most of us would disagree with you... I'm sorry, but I won't let you overthrow this.;Większość z nas by się z panią nie zgodziła… Przykro mi, ale nie pozwolę pani tego obalić.;DIAL_FEREN2_eo
+DIAL_FEREN3;Finally, I’ve been able to duel with you. Thank you. Darek’h went that way.;W końcu udało mi się z panią zmierzyć. Dziękuję. Darek’h poszedł w tamtą stronę.;DIAL_FEREN3_eo
+DIAL_RIMU3;Thank you too, Feren.;Ja też dziękuję, Feren.;DIAL_RIMU3_eo
+DIAL_FEREN4;See you later miss, I hope.;Do zobaczenia później, mam nadzieję.;DIAL_FEREN4_eo
+DIAL_RIMU4;Lili! It’s good to see you again. Are you taking care of your garden?;Lili! Dobrze cię znowu widzieć. Dbasz o ogródek?;DIAL_RIMU4_eo
+DIAL_LILI1;Of course miss Rimu, but there is something, that Lili wants to know…;Oczywiście pani Rimu, ale jest coś, co Lili chciałaby wiedzieć…;DIAL_LILI1_eo
+DIAL_RIMU5;What is it?;Co takiego?;DIAL_RIMU5_eo
+DIAL_LILI2;If Lili doesn't tell you where Darek'h is, will you scream at Lili?;Jeśli Lili nie powie pani Rimu gdzie jest Darek’h, nakrzyczy pani na Lili?;DIAL_LILI2_eo
+DIAL_RIMU6;Of course not, but lets have a deal. If I win a duel with you, will you tell me then?;Oczywiście że nie, ale zróbmy tak. Jeśli wygram pojedynek z tobą, powiesz mi, dobrze?;DIAL_RIMU6_eo
+DIAL_LILI3;Agreed!;Zgoda!;DIAL_LILI3_eo
+DIAL_LILI4;Lili knew this would happen.;Lili wiedziała, że tak będzie.;DIAL_LILI4_eo
+DIAL_RIMU7;Don't worry, Lili. You're stronger than last time.;Nie przejmuj się, Lili. Jesteś silniejsza, niż ostatnio.;DIAL_RIMU7_eo
+DIAL_LILI5;Thanks to Darek’h, he's very nice.;To dzięki Darek’howi, jest bardzo miły.;DIAL_LILI5_eo
+DIAL_LILI6;He went that way. Just please, don't do anything bad to him!;Poszedł w tamtą stronę. Tylko proszę mu nic złego nie robić!;DIAL_LILI6_eo
+DIAL_RIMU8;Did he really go there?;Naprawdę tam poszedł?;DIAL_RIMU8_eo
+DIAL_LILI7;Actually, no.;Tak naprawdę, to nie.;DIAL_LILI7_eo
+DIAL_RIMU9;I can't get along with you.;Nie dogadam się z tobą.;DIAL_RIMU9_eo
+DIAL_LILI8;I’m sorry, miss Rimu.;Przepraszam, pani Rimu.;DIAL_LILI8_eo
+DIAL_RIMU10;It’s okay.;Nieszkodzi.;DIAL_RIMU10_eo
+DIAL_RIMU11;I don’t know you… Who are you?;Nie znam cię… Kim jesteś?;DIAL_RIMU11_eo
+DIAL_VADA1;…;…;DIAL_VADA1_eo
+DIAL_RIMU12;Hello?;Halo?;DIAL_RIMU12_eo
+DIAL_VADA2;…;…;DIAL_VADA2_eo
+DIAL_RIMU13;Will you answer me?;Odpowiesz mi?;DIAL_RIMU13_eo
+DIAL_VADA3;My name is Vad’a;Nazywam się Vad’a;DIAL_VADA3_eo
+DIAL_RIMU14;And?;I?;DIAL_RIMU14_eo
+DIAL_VADA4;And I’m sorry, but I’ll never betray him… *melts*;I przepraszam, ale nigdy go nie zdradzę… *rospuszcza się*;DIAL_VADA4_eo
+DIAL_RIMU15;Strange… Well then, I feel I’m getting close.;Dziwne… No nic, czuję, że się zbliżam.;DIAL_RIMU15_eo
+DIAL_RIMU16;Aria! Dress yourself up.;Aria! Ubierz się.;DIAL_RIMU16_eo
+DIAL_ARIA1;Why?;Czemu?;DIAL_ARIA1_eo
+DIAL_RIMU17;You know why, you know the rules!;Wiesz czemu, znasz zasady!;DIAL_RIMU17_eo
+DIAL_ARIA2;Darek’h doesn’t obey them, so do I!;Darek’h ich nie przestrzega, więc ja też!;DIAL_ARIA2_eo
+DIAL_RIMU18;What a unruly kid… (...kid?);Co za niesforne dziecko... (…dziecko?);DIAL_RIMU18_eo
+DIAL_RIMU19;Let’s play a game. If I win, you’ll dress yourself up and tell me where Darek’h is.;Zagrajmy w grę. Jeśli wygram, ubierzesz się i powiesz mi gdzie jest Darek’h.;DIAL_RIMU19_eo
+DIAL_ARIA3;Okaaay…;Okeeej…;DIAL_ARIA3_eo

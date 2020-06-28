@@ -1,0 +1,75 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://objects/EnemyBullet/bullet_round_fire.png" type="Texture" id=1]
+[ext_resource path="res://objects/EnemyBullet/EnemyBullet.gd" type="Script" id=2]
+[ext_resource path="res://objects/EnemyBullet/bullet_round_dark.png" type="Texture" id=3]
+[ext_resource path="res://objects/EnemyBullet/bullet_flame.png" type="Texture" id=4]
+[ext_resource path="res://objects/EnemyBullet/bullet_round_earth.png" type="Texture" id=5]
+[ext_resource path="res://objects/EnemyBullet/bullet_round_air.png" type="Texture" id=6]
+[ext_resource path="res://objects/EnemyBullet/bullet_round_water.png" type="Texture" id=7]
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 3, 5 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 3, 0, 3, 5 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 6, 0, 3, 5 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "earth",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "dark",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "water",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "air",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "fire",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "flame",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 2.5
+
+[node name="EnemyBullet" type="Area2D"]
+collision_layer = 8
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 5 )
+animation = "flame"
+frame = 2
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.5, -0.5 )
+shape = SubResource( 1 )
+[connection signal="body_entered" from="." to="." method="_on_EnemyBullet_body_entered"]
