@@ -4,10 +4,10 @@ MAIN_MENU;Main menu;Menu główne;Ĉefa menuo
 EXIT;Exit;Wyjście;Fermi
 THE_LEGEND_OF;The legend of;Legenda;La legendo de
 ERROR;Error;Błąd;Eraro
-ERROR_MSG;You shouldn’t be able to see this. Please report it to the game creators.;Tiu komunikajxo ne devas aperi. Bonvolu, raporti tio al la ;ERROR_MGS_eo
+ERROR_MSG;You shouldn’t be able to see this. Please report it to the game creators.;Ten komunikat nie powinien się pojawić.;Tiu komunikajxo ne devas aperi. Bonvolu, raporti tio al la 
 STORY1;Once upon a time, there was an academy, adepts of which studied almost everything of magical nature.;Dawno dawno temu istniała pewna akademia, której adepci studiowali niemal wszystko o magicznej naturze.;STORY1_eo
 STORY2;Some knowledge however was strictly forbidden to explore.;Pewna wiedza była jednak surowo zabroniona.;STORY2_eo
-STORY3;Eventually, the tension of imposed bans broke down, and shook the whole academy, as the students' rebelion took more and more lives.;Pewnego dnia, ;STORY3_eo
+STORY3;Eventually, the tension of imposed bans broke down, and shook the whole academy, as the students' rebelion took more and more lives.;Pewnego dnia, napięcie spowodowane zakazami pękło, a bunt uczniów pochłaniał coraz to więcej żyć.;STORY3_eo
 STORY4;Rimu, the academy's Librarian, is its last hope.;Rimu, Bibliotekarz Akademii, jest jej ostatnią nadzieją.;STORY4_eo
 DIAL_RIMU1;Feren! You know you don't have to do this.;Feren! Wiesz, że nie musisz tego robić.;DIAL_RIMU1_eo
 DIAL_FEREN1;I know miss Rimu. I really liked you, but I can't let you ruin what we've accomplished.;Wiem pani Rimu. Naprawdę panią lubiłem, ale nie pozwolę pani zrujnować tego, co osiągnęliśmy.;DIAL_FEREN1_eo
@@ -36,15 +36,15 @@ DIAL_VADA1;…;…;DIAL_VADA1_eo
 DIAL_RIMU12;Hello?;Halo?;DIAL_RIMU12_eo
 DIAL_VADA2;…;…;DIAL_VADA2_eo
 DIAL_RIMU13;Will you answer me?;Odpowiesz mi?;DIAL_RIMU13_eo
-DIAL_VADA3;My name is Vad’a;Nazywam się Vad’a;DIAL_VADA3_eo
-DIAL_RIMU14;And?;I?;DIAL_RIMU14_eo
-DIAL_VADA4;And I’m sorry, but I’ll never betray him… *melts*;I przepraszam, ale nigdy go nie zdradzę… *rozpuszcza się*;DIAL_VADA4_eo
+DIAL_VADA3;My name is Vada;Nazywam się Vada.;Mi nomiĝas Vada.
+DIAL_RIMU14;And?;I?;Kaj?
+DIAL_VADA4;And I’m sorry, but I’ll never betray him… *melts*;I przepraszam, ale nigdy go nie zdradzę… *rozpuszcza się*;Kaj pardonu, sed mi neniam perfidos lin… *fandiĝas*
 DIAL_RIMU15;Strange… Well then, I feel I’m getting close.;Dziwne… No nic, czuję, że się zbliżam.;DIAL_RIMU15_eo
 DIAL_RIMU16;Aria! Dress yourself up.;Aria! Ubierz się.;DIAL_RIMU16_eo
 DIAL_ARIA1;Why?;Czemu?;DIAL_ARIA1_eo
 DIAL_RIMU17;You know why, you know the rules!;Wiesz czemu, znasz zasady!;DIAL_RIMU17_eo
 DIAL_ARIA2;Darek’h doesn’t obey them, so do I!;Darek’h ich nie przestrzega, więc ja też!;DIAL_ARIA2_eo
-DIAL_RIMU18;What a unruly kid… (...kid?);Co za niesforne dziecko... (…dziecko?);DIAL_RIMU18_eo
+DIAL_RIMU18;What a unruly kid… (...kid?);Co za niesforne dziecko… (…dziecko?);DIAL_RIMU18_eo
 DIAL_RIMU19;Let’s play a game. If I win, you’ll dress yourself up and tell me where Darek’h is.;Zagrajmy w grę. Jeśli wygram, ubierzesz się i powiesz mi gdzie jest Darek’h.;DIAL_RIMU19_eo
 DIAL_ARIA3;Okaaay…;Okeeej…;DIAL_ARIA3_eo
 DIAL_RIMU20;You know the rules?;Znasz zasady?;DIAL_RIMU20_eo
@@ -57,5 +57,5 @@ DIAL_RIMU23;It’s for your own good.;To dla waszego dobra.;DIAL_RIMU23_eo
 DIAL_DAREKH2;Rigth… Let's get it over with.;Jasne… Miejmy to już za sobą.;DIAL_DAREKH2_eo
 DIAL_DAREKH3;I didn’t expect that;Tego się nie spodziewałem…;DIAL_DAREKH3_eo
 DIAL_RIMU24;This is the end of your rebelion.;To koniec twojego buntu.;DIAL_RIMU23_eo
-DIAL_DAREKH4;No, witch. It just had started.;Nie , wiedźmo. Dopiero się zaczął.;DIAL_DAREKH4_eo
+DIAL_DAREKH4;No, witch. It just had started.;Nie, wiedźmo. Dopiero się zaczął.;DIAL_DAREKH4_eo
 THANKS_ALPHA;Thank you for testing out the alpha version!;Dzięki za przetestowanie wersji alfa!;THANKS_ALPHA_eo

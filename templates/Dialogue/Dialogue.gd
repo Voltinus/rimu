@@ -42,14 +42,22 @@ func _input(event):
 
 func _update():
 	var line = dialogue_lines[current_line]
-	if line[0] == "Rimu":
+	var name = line[0]
+	var text = line[1]
+	var unknown_name = false;
+		
+	if name[0] == "?":
+		unknown_name = true
+		name = name.substr(1)
+	
+	if name == "Rimu":
 		$CharacterRimu.show()
 		$CharacterOther.hide()
 	else:
 		$CharacterRimu.hide()
 		$CharacterOther.show()
-		$CharacterOther.texture = textures[line[0]]
-		
-	$Name.text = line[0]
-	$Text.text = line[1]
-	$Name.modulate = name_colors[line[0]]
+		$CharacterOther.texture = textures[name]
+	
+	$Name.text = "???" if unknown_name else name
+	$Name.modulate = name_colors[name]
+	$Text.text = text
