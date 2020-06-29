@@ -26,7 +26,7 @@ const INTERVAL = 0.5   # Interval in seconds in which player should take damage
 
 func _physics_process(delta):
 	accumulator += delta
-	if accumulator >= INTERVAL and player_inside:
+	if accumulator >= INTERVAL and player_inside and burning:
 		player.hit(1)
 		accumulator = 0
 
