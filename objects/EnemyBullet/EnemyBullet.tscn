@@ -8,36 +8,26 @@
 [ext_resource path="res://objects/EnemyBullet/bullet_round_air.png" type="Texture" id=6]
 [ext_resource path="res://objects/EnemyBullet/bullet_round_water.png" type="Texture" id=7]
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 3, 5 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=2]
 flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 3, 0, 3, 5 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 6, 0, 3, 5 )
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "earth",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "dark",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "water",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ) ],
@@ -45,18 +35,28 @@ animations = [ {
 "name": "air",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "water",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "fire",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
 "loop": true,
 "name": "flame",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "earth",
+"speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=5]
 radius = 2.5
 
 [node name="EnemyBullet" type="Area2D"]
@@ -64,12 +64,12 @@ collision_layer = 8
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 5 )
+frames = SubResource( 4 )
 animation = "flame"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.5, -0.5 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 [connection signal="body_entered" from="." to="." method="_on_EnemyBullet_body_entered"]

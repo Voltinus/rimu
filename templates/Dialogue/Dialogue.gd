@@ -2,10 +2,10 @@ extends Control
 
 
 var textures = {
-	"Feren":  preload("res://templates/Dialogue/character_fire.png"),
-	"Vada":   preload("res://templates/Dialogue/character_water.png"),
-	"Aria":   preload("res://templates/Dialogue/character_air.png"),
-	"Lili":   preload("res://templates/Dialogue/character_earth.png"),
+	"Feren":   preload("res://templates/Dialogue/character_fire.png"),
+	"Vada":    preload("res://templates/Dialogue/character_water.png"),
+	"Aria":    preload("res://templates/Dialogue/character_air.png"),
+	"Lili":    preload("res://templates/Dialogue/character_earth.png"),
 	"Darek'h": preload("res://templates/Dialogue/character_dark.png")
 }
 
@@ -57,6 +57,7 @@ func _update():
 		$CharacterRimu.hide()
 		$CharacterOther.show()
 		$CharacterOther.texture = textures[name]
+		$CharacterOther.texture.set_flags(3) # defaults, but without filter
 	
 	$Name.text = "???" if unknown_name else name
 	$Name.modulate = name_colors[name]

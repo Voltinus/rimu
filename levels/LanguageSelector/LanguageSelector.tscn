@@ -21,8 +21,10 @@ bg_color = Color( 1, 1, 0, 1 )
 [node name="LanguageSelector" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -600.0
-margin_bottom = -450.0
+margin_left = 100.0
+margin_top = 75.0
+margin_right = -500.0
+margin_bottom = -375.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false

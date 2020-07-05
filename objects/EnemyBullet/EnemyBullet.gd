@@ -16,7 +16,7 @@ func init(vel, pos, elem):
 func _physics_process(delta):
 	position.x += velocity.x * _SPEED * delta
 	position.y += velocity.y * _SPEED * delta
-	if position.x < -5 or position.x > 125 or position.y < -5 or position.y > 155:
+	if position.x < -5 or position.x > 245 or position.y < -5 or position.y > 305:
 		self.queue_free()
 
 

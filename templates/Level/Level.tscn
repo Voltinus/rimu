@@ -21,6 +21,7 @@ normal = Vector2( 0, 1 )
 script = ExtResource( 4 )
 
 [node name="ScrollingBackground" parent="." instance=ExtResource( 1 )]
+scale = Vector2( 2, 2 )
 
 [node name="Game" type="Node2D" parent="."]
 
@@ -35,7 +36,7 @@ collision_mask = 33
 shape = SubResource( 1 )
 
 [node name="WallRight" type="CollisionShape2D" parent="Game/Walls"]
-position = Vector2( 120, 0 )
+position = Vector2( 240, 0 )
 shape = SubResource( 2 )
 
 [node name="WallTop" type="CollisionShape2D" parent="Game/Walls"]
@@ -43,7 +44,7 @@ position = Vector2( 0, 40 )
 shape = SubResource( 3 )
 
 [node name="WallBottom" type="CollisionShape2D" parent="Game/Walls"]
-position = Vector2( 0, 150 )
+position = Vector2( 0, 300 )
 shape = SubResource( 4 )
 
 [node name="Enemy" parent="Game" instance=ExtResource( 5 )]
@@ -92,8 +93,8 @@ __meta__ = {
 }
 
 [node name="PlayerStats" type="Control" parent="GUI"]
-margin_left = 120.0
-margin_right = 200.0
+margin_left = 240.0
+margin_right = 320.0
 margin_bottom = 150.0
 __meta__ = {
 "_edit_use_anchors_": false

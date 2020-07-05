@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 
 var velocity = Vector2()
-export var speed = 70
+export var speed = 120
 export var max_hp = 20
 var hp = max_hp
 
