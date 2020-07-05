@@ -15,13 +15,14 @@ func goto_scene(scn: String):
 func quit():
 	get_tree().quit()
 
-func game_width():
-	return ProjectSettings.get_setting("display/window/size/width") * 0.6
+func window_width():
+	return ProjectSettings.get_setting("display/window/size/width")
 
-func game_height():
+func window_height():
 	return ProjectSettings.get_setting("display/window/size/height")
 
-# function to convert point between (0, 0) and (1, 1)
-# to value between 0 and game area size
-func unit_to_game(point: Vector2):
-	return Vector2(point.x * game_width(), point.y * game_height());
+func game_width():
+	return window_width() * 0.6
+
+func game_height():
+	return window_height()

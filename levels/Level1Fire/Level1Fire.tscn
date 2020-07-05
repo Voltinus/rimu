@@ -10,4 +10,3 @@ script = ExtResource( 2 )
 [node name="Enemy" parent="Game" index="2"]
 script = ExtResource( 3 )
 [connection signal="died" from="Game/Enemy" to="Game/Enemy" method="_on_Enemy_died"]
-[connection signal="hitted" from="Game/Enemy" to="Game/Enemy" method="_on_Enemy_hitted"]
