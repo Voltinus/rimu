@@ -26,7 +26,7 @@ scale = Vector2( 2, 2 )
 [node name="Game" type="Node2D" parent="."]
 
 [node name="Player" parent="Game" instance=ExtResource( 2 )]
-position = Vector2( 60, 120 )
+position = Vector2( 120, 250 )
 
 [node name="Walls" type="StaticBody2D" parent="Game"]
 collision_layer = 16
@@ -118,6 +118,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="hitted" from="Game/Player" to="." method="_on_Player_hitted"]
-[connection signal="died" from="Game/Enemy" to="Game/Player" method="_on_Enemy_died"]
 [connection signal="died" from="Game/Enemy" to="." method="_on_Enemy_died"]
+[connection signal="died" from="Game/Enemy" to="Game/Player" method="_on_Enemy_died"]
 [connection signal="hitted" from="Game/Enemy" to="." method="_on_Enemy_hitted"]

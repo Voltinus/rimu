@@ -15,14 +15,20 @@ func goto_scene(scn: String):
 func quit():
 	get_tree().quit()
 
-func window_width():
+func window_width() -> int:
 	return ProjectSettings.get_setting("display/window/size/width")
 
-func window_height():
+func window_height() -> int:
 	return ProjectSettings.get_setting("display/window/size/height")
 
-func game_width():
-	return window_width() * 0.6
+func window_size() -> Vector2:
+	return Vector2(window_width(), window_height())
 
-func game_height():
+func game_width() -> int:
+	return int(window_width() * 0.6)
+
+func game_height() -> int:
 	return window_height()
+
+func game_size() -> Vector2:
+	return Vector2(game_width(), game_height())

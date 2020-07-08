@@ -24,6 +24,9 @@ func _physics_process(_delta):
 	if Input.is_action_pressed("move_down"):
 		velocity.y += 1
 	
+	if Input.is_action_pressed("slow_down"):
+		velocity *= 0.5
+	
 	var _collisions = move_and_slide(velocity * speed)
 
 
