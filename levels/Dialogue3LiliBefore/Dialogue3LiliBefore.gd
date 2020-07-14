@@ -7,7 +7,7 @@ func _ready():
 		["Rimu", "DIAL_RIMU5"],
 		["Lili", "DIAL_LILI2"],
 		["Rimu", "DIAL_RIMU6"],
-		["Lili", "DIAL_LILI3"]
+		["Lili2", "DIAL_LILI3"]
 	]
 	
 	next_stage = "Level2Earth"

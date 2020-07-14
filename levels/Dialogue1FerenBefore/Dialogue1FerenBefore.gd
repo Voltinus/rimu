@@ -5,7 +5,7 @@ func _ready():
 		["Rimu",  "DIAL_RIMU1"],
 		["Feren", "DIAL_FEREN1"],
 		["Rimu",  "DIAL_RIMU2"],
-		["Feren", "DIAL_FEREN2"]
+		["Feren2", "DIAL_FEREN2"]
 	]
 	
 	next_stage = "Level1Fire"

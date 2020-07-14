@@ -6,7 +6,12 @@ var textures = {
 	"Vada":    preload("res://templates/Dialogue/character_water.png"),
 	"Aria":    preload("res://templates/Dialogue/character_air.png"),
 	"Lili":    preload("res://templates/Dialogue/character_earth.png"),
-	"Darek'h": preload("res://templates/Dialogue/character_dark.png")
+	"Darek'h": preload("res://templates/Dialogue/character_dark.png"),
+	"Feren2":   preload("res://templates/Dialogue/character_fire2.png"),
+	"Vada2":    preload("res://templates/Dialogue/character_water2.png"),
+	"Aria2":    preload("res://templates/Dialogue/character_air2.png"),
+	"Lili2":    preload("res://templates/Dialogue/character_earth2.png"),
+	"Darek'h2": preload("res://templates/Dialogue/character_dark2.png")
 }
 
 var name_colors = {
@@ -59,6 +64,10 @@ func _update():
 		$CharacterOther.texture = textures[name]
 		$CharacterOther.texture.set_flags(3) # defaults, but without filter
 	
+	$Text.text = text
+	
+	if name[-1] == "2":
+		name = name.substr(0, len(name)-1)
+		
 	$Name.text = "???" if unknown_name else name
 	$Name.modulate = name_colors[name]
-	$Text.text = text
