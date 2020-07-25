@@ -24,6 +24,8 @@ func _physics_process(_delta):
 	if Input.is_action_pressed("move_down"):
 		velocity.y += 1
 	
+	velocity = velocity.normalized()
+	
 	if Input.is_action_pressed("slow_down"):
 		velocity *= 0.5
 	
