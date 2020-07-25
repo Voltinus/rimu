@@ -11,7 +11,8 @@ func _ready():
 		{ "target": Vector2(0.2, 0.1) },
 		{ "shooting": true },
 		{ "target": Vector2(0.5, 0.1) },
-		{ "callback": "fn" }
+		{ "callback": "fn" },
+		{ "wait": 3 }
 	]
 
 func fn():

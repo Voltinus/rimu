@@ -74,6 +74,10 @@ func do_state():
 		if states[current_state].has("callback"):
 			call(states[current_state].callback)
 		
+		if states[current_state].has("wait"):
+			yield(get_tree().create_timer(states[current_state].wait), "timeout")
+			delay_finished = true
+		
 		while !target_reached: yield(get_tree().create_timer(0.01), 'timeout')
 		while !delay_finished: yield(get_tree().create_timer(0.01), 'timeout')
 		while !callback_ended: yield(get_tree().create_timer(0.01), 'timeout')
