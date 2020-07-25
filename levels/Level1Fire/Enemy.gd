@@ -14,6 +14,11 @@ func _ready():
 		{ "callback": "fn" },
 		{ "wait": 3 }
 	]
+	
+	states2 = [
+		{ "shooting": false },
+		{ "target": Vector2(0.1, 0.1) }
+	]
 
 func fn():
 	shooting = false

@@ -18,6 +18,12 @@ var states = [
 	{ 'target': Vector2(0.5, 0.1) }
 ]
 
+# These states are copied by reference to "states"
+# after reaching tresholds 75%, 50% i 25% np
+var states2 = null
+var states3 = null
+var states4 = null
+
 
 func init(element):
 	_element = element
@@ -38,6 +44,8 @@ func burst(n, d = -1):
 		get_parent().add_child(node)
 
 
+var treshold_reached = 0
+
 func hit(damage):
 	if !alive:
 		return
@@ -48,6 +56,17 @@ func hit(damage):
 	if hp == 0:
 		emit_signal('died')
 		alive = false
+	
+	if float(hp)/MAX_HP <= 0.75 and states2 != null:
+		treshold_reached = 2
+	
+	if float(hp)/MAX_HP <= 0.5 and states3 != null:
+		treshold_reached = 3
+	
+	if float(hp)/MAX_HP <= 0.25 and states4 != null:
+		treshold_reached = 4
+	
+	
 
 const SPEED = 30
 var velocity : Vector2
@@ -82,14 +101,28 @@ func do_state():
 		while !delay_finished: yield(get_tree().create_timer(0.01), 'timeout')
 		while !callback_ended: yield(get_tree().create_timer(0.01), 'timeout')
 		
-		if states[current_state].has("next"):
-			for i in range(0, states.size()):
-				if states[i].has("label") and states[i].label == states[current_state].next:
-					current_state = i
-		elif current_state+1 == states.size():
-			current_state = 0
+		if !treshold_reached:
+			if states[current_state].has("next"):
+				for i in range(0, states.size()):
+					if states[i].has("label") and states[i].label == states[current_state].next:
+						current_state = i
+			elif current_state+1 == states.size():
+				current_state = 0
+			else:
+				current_state += 1
 		else:
-			current_state += 1
+			match treshold_reached:
+				2:
+					states = states2
+					states2 = null
+				3:
+					states = states3
+					states3 = null
+				4:
+					states = states4
+					states4 = null
+			current_state = 0
+			treshold_reached = 0
 		
 		target_reached = false
 		delay_finished = false
