@@ -26,6 +26,12 @@ func fn():
 		yield(get_tree().create_timer(0.5), 'timeout')
 	callback_ended = true
 
+func spawn_lava_walls():
+	var lava_walls_instance = LavaWalls.instance()
+	$"/root/Level1Fire/Game".add_child(lava_walls_instance)
+
+func despawn_lava_walls():
+	pass
 
 func _on_ShootTimer_timeout():
 	if not alive or !shooting or get_node('../Player') == null:

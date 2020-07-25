@@ -21,16 +21,16 @@ func _process(delta):
 signal slided
 
 func slide_in():
-	for i in range(150):
-		position.y = i - 150
-		yield(get_tree().create_timer(0.02), "timeout")
+	for i in range(Global.game_height()):
+		position.y = i - Global.game_height()
+		yield(get_tree().create_timer(0.01), "timeout")
 	
 	emit_signal("slided")
 
 
 func slide_out():
-	for i in range(150):
+	for i in range(Global.game_height()):
 		position.y = i
-		yield(get_tree().create_timer(0.02), "timeout")
+		yield(get_tree().create_timer(0.01), "timeout")
 	
 	self.queue_free()

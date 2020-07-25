@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://templates/Level/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/Level1Fire/Level1Fire.gd" type="Script" id=2]
 [ext_resource path="res://levels/Level1Fire/Enemy.gd" type="Script" id=3]
+[ext_resource path="res://objects/LavaWalls/LavaWalls.tscn" type="PackedScene" id=4]
 
 [node name="Level1Fire" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+lava_walls = ExtResource( 4 )
 
 [node name="Enemy" parent="Game" index="2"]
 script = ExtResource( 3 )
