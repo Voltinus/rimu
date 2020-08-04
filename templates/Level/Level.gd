@@ -2,21 +2,6 @@ extends Node2D
 
 
 var _element
-const BOSS_NAMES = {
-	"fire": "Feren",
-	"water": "Vada",
-	"air": "Aria",
-	"earth": "Lili",
-	"dark": "Darek'h"
-}
-
-const BOSS_BAR_COLORS = {
-	"fire":  Color.gold,
-	"water": Color.darkblue,
-	"air":   Color.goldenrod,
-	"earth": Color.brown,
-	"dark":  Color.purple
-}
 
 
 var Scroll = preload("res://objects/Scroll/Scroll.tscn")
@@ -25,8 +10,7 @@ var Scroll = preload("res://objects/Scroll/Scroll.tscn")
 func init(elem):
 	_element = elem
 	$ScrollingBackground.init(elem)
-	$GUI/BossStats/Name.text = BOSS_NAMES[elem]
-	$GUI/BossStats/HPBar.color = BOSS_BAR_COLORS[_element]
+	$GUI.init(elem)
 	$Game/Enemy.init(elem)
 
 
@@ -47,7 +31,7 @@ func _scroll_bounce(node):
 
 
 func _on_Enemy_hitted(hp_left):
-	$GUI/BossStats/HPBar.rect_size.x = hp_left * Global.game_width()
+	$GUI/BossStats/HPBar.region_rect.size.x = hp_left * Global.game_width()
 
 
 func _on_Enemy_died():
