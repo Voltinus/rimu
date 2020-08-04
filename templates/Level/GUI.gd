@@ -10,7 +10,7 @@ const BOSS_NAMES = {
 }
 
 const BOSS_BAR_COLORS = {
-	"fire":  Color.gold,
+	"fire":  Color.red,
 	"water": Color.blue,
 	"air":   Color.goldenrod,
 	"earth": Color.limegreen,

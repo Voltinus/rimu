@@ -69,6 +69,7 @@ func hit(damage):
 	
 
 const SPEED = 30
+var speed_multilplier = 1
 var velocity : Vector2
 var target   = Vector2(60, 20)
 
@@ -96,6 +97,9 @@ func do_state():
 		if states[current_state].has("wait"):
 			yield(get_tree().create_timer(states[current_state].wait), "timeout")
 			delay_finished = true
+		
+		if states[current_state].has("speed"):
+			speed_multilplier = states[current_state].speed
 		
 		while !target_reached: yield(get_tree().create_timer(0.01), 'timeout')
 		while !delay_finished: yield(get_tree().create_timer(0.01), 'timeout')
@@ -133,7 +137,7 @@ func _physics_process(_delta):
 		var current_target = states[current_state].target
 		current_target *= Vector2(Global.game_width(), Global.game_height())
 		if position.distance_to(current_target) > 1:
-			velocity = (current_target - position).normalized() * SPEED
+			velocity = (current_target - position).normalized() * SPEED * speed_multilplier
 			velocity = move_and_slide(velocity)
 		else:
 			target_reached = true

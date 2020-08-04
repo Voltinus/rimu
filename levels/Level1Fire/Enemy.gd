@@ -8,11 +8,12 @@ var FireLine  = preload("res://objects/FireLine/FireLine.tscn")
 func _ready():
 	states = [
 		{ "shooting": false },
+		{ "speed": 2 },
 		{ "target": Vector2(0.2, 0.1) },
 		{ "shooting": true },
+		{ "speed": 1 },
 		{ "target": Vector2(0.5, 0.1) },
-		{ "callback": "fn" },
-		{ "wait": 3 }
+		{ "callback": "fn" }
 	]
 	
 	states2 = [
