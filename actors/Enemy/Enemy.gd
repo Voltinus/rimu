@@ -19,7 +19,7 @@ var states = [
 ]
 
 # These states are copied by reference to "states"
-# after reaching tresholds 75%, 50% i 25% np
+# after reaching tresholds 75%, 50% and 25% hp
 var states2 = null
 var states3 = null
 var states4 = null
