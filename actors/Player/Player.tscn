@@ -38,4 +38,8 @@ autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/damage = SubResource( 2 )
+
+[node name="Flames" type="Node2D" parent="."]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Flames"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
