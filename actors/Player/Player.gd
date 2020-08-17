@@ -34,7 +34,7 @@ func _physics_process(_delta):
 
 func _on_ShootTimer_timeout():
 	var node = Bullet.instance()
-	node.init(Vector2(0, -1), position)
+	node.init(Vector2(0, -1), position + Vector2(0, -20))
 	get_parent().add_child(node)
 
 

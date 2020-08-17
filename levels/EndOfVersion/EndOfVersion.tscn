@@ -14,8 +14,8 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-margin_right = 200.0
-margin_bottom = 90.0
+margin_right = 400.0
+margin_bottom = 220.0
 theme = ExtResource( 1 )
 text = "THANKS_ALPHA"
 align = 1
@@ -23,10 +23,10 @@ valign = 1
 autowrap = true
 
 [node name="ButtonMainMenu" type="Button" parent="."]
-margin_left = 50.0
-margin_top = 90.0
-margin_right = 150.0
-margin_bottom = 110.0
+margin_left = 150.0
+margin_top = 220.0
+margin_right = 250.0
+margin_bottom = 240.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 1 )
 text = "MAIN_MENU"
@@ -35,12 +35,15 @@ __meta__ = {
 }
 
 [node name="ButtonExit" type="Button" parent="."]
-margin_left = 50.0
-margin_top = 115.0
-margin_right = 150.0
-margin_bottom = 135.0
+margin_left = 150.0
+margin_top = 250.0
+margin_right = 250.0
+margin_bottom = 270.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 1 )
 text = "EXIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="ButtonMainMenu" to="." method="_on_ButtonMainMenu_pressed"]
 [connection signal="pressed" from="ButtonExit" to="." method="_on_ButtonExit_pressed"]

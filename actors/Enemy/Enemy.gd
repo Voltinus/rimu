@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-const MAX_HP = 1000
+const MAX_HP = 10
 var hp = MAX_HP
 var alive = true
 var _element = null

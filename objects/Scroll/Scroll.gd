@@ -3,9 +3,18 @@ extends Area2D
 
 var _element : String
 
+const gradients = {
+	"fire":  [ Color(1, 1, 0.33), Color(1, 0.33, 0, 0.5) ],
+	"earth": [ Color(0, 0.66, 0), Color(0, 0.33, 0, 0.5) ],
+	"water": [ Color(1, 1, 1),    Color(1, 1, 1, 0.25) ],
+	"air":   [ Color(1, 1, 0.5),  Color(1, 1, 1, 0.25) ],
+	"dark":  [ Color(1, 1, 1),    Color(1, 1, 1, 0.25) ]
+}
+
 func init(elem):
 	_element = elem
 	$Sprite.texture = load("res://objects/Scroll/scroll_%s.png" % elem)
+	$Particles2D.process_material.color_ramp.gradient.colors = PoolColorArray(gradients[elem])
 
 
 var next_scene = {

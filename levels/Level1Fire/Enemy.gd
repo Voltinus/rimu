@@ -20,7 +20,9 @@ func _ready():
 	
 	states2 = [
 		{ "shooting": false },
-		{ "target": Vector2(0.1, 0.1) }
+		{ "speed": 2 },
+		{ "target": Vector2(0.5, 0.1) },
+		{ "callback": "curtain" }
 	]
 
 func byle_jak():
@@ -41,6 +43,12 @@ func triple_burst():
 			burst(24, j/10.0)
 			yield(get_tree().create_timer(0.15), 'timeout')
 		yield(get_tree().create_timer(0.5), 'timeout')
+	callback_ended = true
+
+func curtain():
+	
+	
+	
 	callback_ended = true
 
 func spawn_lava_walls():
