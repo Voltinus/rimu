@@ -1,7 +1,8 @@
 extends Area2D
+class_name Scroll
 
 
-var _element : String
+var _element: String
 
 const gradients = {
 	"fire":  [ Color(1, 1, 0.33), Color(1, 0.33, 0, 0.5) ],
@@ -11,10 +12,10 @@ const gradients = {
 	"dark":  [ Color(1, 1, 1),    Color(1, 1, 1, 0.25) ]
 }
 
-func init(elem):
+func init(elem: String):
 	_element = elem
-	$Sprite.texture = load("res://objects/Scroll/scroll_%s.png" % elem)
-	$Particles2D.process_material.color_ramp.gradient.colors = PoolColorArray(gradients[elem])
+	($Sprite as Sprite).texture = load("res://objects/Scroll/scroll_%s.png" % elem)
+	($Particles2D as Particles2D).process_material.color_ramp.gradient.colors = PoolColorArray(gradients[elem])
 
 
 var next_scene = {

@@ -10,7 +10,7 @@ func init(vel, pos, elem):
 	velocity = vel.normalized()
 	position = pos
 	_element = elem
-	$AnimatedSprite.play(elem)
+	($AnimatedSprite as AnimatedSprite).play(elem)
 
 
 func _physics_process(delta):

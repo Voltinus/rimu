@@ -21,6 +21,9 @@ text = "THANKS_ALPHA"
 align = 1
 valign = 1
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ButtonMainMenu" type="Button" parent="."]
 margin_left = 150.0

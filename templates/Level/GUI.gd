@@ -1,4 +1,5 @@
 extends Control
+class_name GUI
 
 
 const BOSS_NAMES = {
@@ -18,6 +19,6 @@ const BOSS_BAR_COLORS = {
 }
 
 
-func init(elem):
+func init(elem: String) -> void:
 	$BossStats/Name.text = BOSS_NAMES[elem]
 	$BossStats/HPBar.modulate = BOSS_BAR_COLORS[elem]

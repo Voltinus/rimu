@@ -110,6 +110,7 @@ anims/damage = SubResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Flames"]
 position = Vector2( 0, -20 )
 frames = SubResource( 12 )
+frame = 1
 playing = true
 __meta__ = {
 "_edit_group_": true
@@ -124,6 +125,5 @@ process_material = SubResource( 13 )
 [node name="Shield" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 8 )
-frame = 4
 playing = true
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

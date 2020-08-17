@@ -7,14 +7,14 @@ var _element
 var Scroll = preload("res://objects/Scroll/Scroll.tscn")
 
 
-func init(elem):
+func init(elem: String):
 	_element = elem
-	$ScrollingBackground.init(elem)
-	$GUI.init(elem)
-	$Game/Enemy.init(elem)
+	($ScrollingBackground as ScrollingBackground).init(elem)
+	($GUI as GUI).init(elem)
+	($Game/Enemy as Enemy).init(elem)
 
 
-func _scroll_fall(node):
+func _scroll_fall(node: Scroll):
 	for _i in range(30):
 		node.position.y += 1
 		yield(get_tree().create_timer(0.05), "timeout")

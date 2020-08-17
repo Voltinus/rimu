@@ -19,10 +19,13 @@ func _ready():
 	]
 	
 	states2 = [
-		{ "shooting": false },
-		{ "speed": 2 },
+		{ "speed": 1 },
 		{ "target": Vector2(0.5, 0.1) },
-		{ "callback": "curtain" }
+		{ "shooting": false },
+		{ "callback": "curtain" },
+		{ "callback": "fire_lines" },
+		{ "callback": "triple_burst" },
+		
 	]
 
 func byle_jak():
@@ -46,9 +49,30 @@ func triple_burst():
 	callback_ended = true
 
 func curtain():
-	
-	
-	
+	for i in range(5):
+		for j in range(10):
+			for k in range(2):
+				var node = Bullet.instance()
+				var vel = Vector2(0, 1)
+				var pos
+				if k:
+					pos = Vector2(Global.game_width() * (0.1 + i/12.0), -3)
+				else:
+					pos = Vector2(Global.game_width() * (0.9 - i/12.0), -3)
+				node.init(vel, pos, _element)
+				get_parent().add_child(node)
+			yield(get_tree().create_timer(0.15), 'timeout')
+		yield(get_tree().create_timer(0.3), 'timeout')
+	callback_ended = true
+
+func fire_lines():
+	for i in range(3):
+		var node = FireLine.instance()
+		node.position = Vector2(Global.game_width() * 0.5, Global.game_height() * (0.1 + i*0.3 + randf()/5))
+		print(node.position)
+		get_parent().add_child(node)
+		yield(get_tree().create_timer(0.3), 'timeout')
+	yield(get_tree().create_timer(5), 'timeout')
 	callback_ended = true
 
 func spawn_lava_walls():
@@ -59,17 +83,17 @@ func despawn_lava_walls():
 	pass
 
 func _on_ShootTimer_timeout():
-	if not alive or !shooting or get_node('../Player') == null:
+	if not alive or !shooting or (get_node('../Player') as Player) == null:
 		return
 	
 	if float(hp)/MAX_HP < 0.5:
 		for i in range(3):
 			var node = Bullet.instance()
-			var vel = (get_node('../Player').position - position + Vector2((i-1)*10, 0)).normalized()
+			var vel = ((get_node('../Player') as Player).position - position + Vector2((i-1)*10, 0)).normalized()
 			node.init(vel, position, 'flame')
 			get_parent().add_child(node)
 	else:
 		var node = Bullet.instance()
-		var vel = (get_node('../Player').position - position).normalized()
+		var vel = ((get_node('../Player') as Player).position - position).normalized()
 		node.init(vel, position, _element)
 		get_parent().add_child(node)

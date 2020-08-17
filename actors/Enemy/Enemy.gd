@@ -1,7 +1,8 @@
 extends KinematicBody2D
+class_name Enemy
 
 
-const MAX_HP = 10
+const MAX_HP = 100
 var hp = MAX_HP
 var alive = true
 var _element = null
@@ -27,7 +28,7 @@ var states4 = null
 
 func init(element):
 	_element = element
-	$AnimatedSprite.animation = element
+	($AnimatedSprite as AnimatedSprite).animation = element
 	do_state()
 
 
@@ -52,7 +53,7 @@ func hit(damage):
 	
 	hp = max(0, hp - damage)
 	emit_signal('hitted', float(hp)/MAX_HP)
-	$AnimationPlayer.play('damage')
+	($AnimationPlayer as AnimationPlayer).play('damage')
 	if hp == 0:
 		emit_signal('died')
 		alive = false
@@ -149,6 +150,6 @@ func _on_ShootTimer_timeout():
 		return
 	
 	var node = Bullet.instance()
-	var vel = (get_node('../Player').position - position).normalized()
+	var vel = ((get_node('../Player') as Player).position - position).normalized()
 	node.init(vel, position, _element)
 	get_parent().add_child(node)

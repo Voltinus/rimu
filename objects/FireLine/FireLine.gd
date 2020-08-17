@@ -22,7 +22,7 @@ func _ready():
 
 var burning = false    # States if line is on fire
 var accumulator = 0    # Accumulator for gathering delta, until in exceeds the INTERVAL
-const INTERVAL = 0.5   # Interval in seconds in which player should take damage
+const INTERVAL = 0.2   # Interval in seconds in which player should take damage
 
 func _physics_process(delta):
 	accumulator += delta

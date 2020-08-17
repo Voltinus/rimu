@@ -1,19 +1,19 @@
 extends KinematicBody2D
+class_name Player
 
 
-var velocity = Vector2()
-export var speed = 120
-export var max_hp = 20
-var hp = max_hp
+var velocity: Vector2
+export var speed: int = 120
+export var max_hp: int = 20
+var hp: int = max_hp
 
-var Bullet = preload("res://objects/PlayerBullet/PlayerBullet.tscn")
-
+var Bullet: PackedScene = preload("res://objects/PlayerBullet/PlayerBullet.tscn")
 
 signal hitted(hp_left)
 signal died
 
 
-func _physics_process(_delta):
+func _physics_process(_delta) -> void:
 	velocity = Vector2(0, 0)
 	if Input.is_action_pressed("move_left"):
 		velocity.x -= 1
@@ -32,15 +32,15 @@ func _physics_process(_delta):
 	var _collisions = move_and_slide(velocity * speed)
 
 
-func _on_ShootTimer_timeout():
-	var node = Bullet.instance()
+func _on_ShootTimer_timeout() -> void:
+	var node: PlayerBullet = Bullet.instance()
 	node.init(Vector2(0, -1), position + Vector2(0, -20))
 	get_parent().add_child(node)
 
 
-func hit(damage):
-	$AnimationPlayer.play("damage")
-	hp = max(0, hp - damage)
+func hit(damage: int) -> void:
+	($AnimationPlayer as AnimationPlayer).play("damage")
+	hp = int(max(0, hp - damage))
 	emit_signal("hitted", float(hp)/max_hp)
 	if hp == 0:
 		emit_signal("died")
@@ -48,5 +48,5 @@ func hit(damage):
 		self.queue_free()
 
 
-func _on_Enemy_died():
-	$ShootTimer.stop()
+func _on_Enemy_died() -> void:
+	($ShootTimer as Timer).stop()
