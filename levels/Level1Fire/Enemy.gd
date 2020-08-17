@@ -32,7 +32,7 @@ func byle_jak():
 		yield(get_tree().create_timer(0.15), 'timeout')
 	callback_ended = true
 
-func fn():
+func triple_burst():
 	shooting = false
 	for _i in range(3):
 		for j in range(5):

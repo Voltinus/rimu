@@ -46,6 +46,9 @@ margin_top = 180.0
 margin_right = 400.0
 margin_bottom = 300.0
 color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Name" type="Label" parent="."]
 modulate = Color( 1, 0, 0, 1 )
