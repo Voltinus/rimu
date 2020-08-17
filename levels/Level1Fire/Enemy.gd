@@ -7,19 +7,30 @@ var FireLine  = preload("res://objects/FireLine/FireLine.tscn")
 
 func _ready():
 	states = [
-		{ "shooting": false },
-		{ "speed": 2 },
-		{ "target": Vector2(0.2, 0.1) },
+		{ "wait": 1 },
+		{ "callback": "byle_jak" },
+		{ "target": Vector2(0.8, 0.2) },
 		{ "shooting": true },
 		{ "speed": 1 },
-		{ "target": Vector2(0.5, 0.1) },
-		{ "callback": "fn" }
+		{ "target": Vector2(0.2, 0.2) },
+		{ "shooting": false },
+		{ "speed": 2 },
+		{ "target": Vector2(0.5, 0.1) }
 	]
 	
 	states2 = [
 		{ "shooting": false },
 		{ "target": Vector2(0.1, 0.1) }
 	]
+
+func byle_jak():
+	shooting = false
+	for _j in range(50):
+		if not alive:
+			return
+		burst(24)
+		yield(get_tree().create_timer(0.15), 'timeout')
+	callback_ended = true
 
 func fn():
 	shooting = false
