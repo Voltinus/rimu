@@ -6,8 +6,7 @@ var FireLine  = preload("res://objects/FireLine/FireLine.tscn")
 
 
 func _ready():
-	states = [
-		{ "callback": "spawn_lava_walls" },
+	states= [
 		{ "wait": 1 },
 		{ "callback": "byle_jak" },
 		{ "target": Vector2(0.8, 0.2) },
@@ -28,7 +27,16 @@ func _ready():
 		{ "callback": "fire_lines" },
 		{ "shooting": false },
 		{ "callback": "triple_burst" },
-		
+	]
+	
+	states3 = [
+		{ "speed": 1 },
+		{ "target": Vector2(0.5, 0.1) },
+		{ "shooting": false },
+		{ "callback": "spawn_lava_walls" },
+		{ "label": "start" },
+		{ "callback": "triple_maze" },
+		{ "next": "start" },
 	]
 
 func byle_jak():
@@ -51,6 +59,22 @@ func triple_burst():
 		yield(get_tree().create_timer(0.5), 'timeout')
 	callback_ended = true
 
+func triple_maze():
+	shooting = false
+	for _i in range(10):
+		if not alive:
+			return
+		var rand_int: int = randi()%15 + 12
+		for k in range(40):
+			if rand_int in range(k, k+2): continue
+			var node = EnemyBullet.instance()
+			var vel = Vector2(0, 1)
+			var pos = Vector2(Global.game_width() * (0.05 + 0.0225*k), -3)
+			node.init(vel, pos, "flame")
+			get_parent().add_child(node)
+		yield(get_tree().create_timer(1), 'timeout')
+	callback_ended = true
+
 func curtain():
 	for i in range(5):
 		for j in range(10):
@@ -58,7 +82,7 @@ func curtain():
 				if not alive:
 					return
 				var node = EnemyBullet.instance()
-				var vel = Vector2(0, 1)
+				var vel = Vector2(0, 2)
 				var pos
 				if k:
 					pos = Vector2(Global.game_width() * (0.05 + i/12.0 + j/100.0 - randf()/100), -3)
@@ -66,8 +90,8 @@ func curtain():
 					pos = Vector2(Global.game_width() * (0.95 - i/12.0 - j/100.0 + randf()/100), -3)
 				node.init(vel, pos, "flame")
 				get_parent().add_child(node)
-			yield(get_tree().create_timer(0.1), 'timeout')
-		yield(get_tree().create_timer(0.2), 'timeout')
+			yield(get_tree().create_timer(0.05), 'timeout')
+		yield(get_tree().create_timer(0.1), 'timeout')
 	callback_ended = true
 
 func fire_lines():
@@ -88,9 +112,6 @@ func spawn_lava_walls() -> void:
 	var lava_walls_instance: Area2D = LavaWalls.instance()
 	($"/root/Level1Fire/Game" as Node2D).add_child(lava_walls_instance)
 	callback_ended = true
-
-func despawn_lava_walls():
-	pass
 
 func _on_ShootTimer_timeout():
 	if not alive or !shooting or (get_node('../Player') as Player) == null:

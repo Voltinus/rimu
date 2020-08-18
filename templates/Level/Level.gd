@@ -30,20 +30,20 @@ func _scroll_bounce(node):
 			yield(get_tree().create_timer(0.2), "timeout")
 
 
-func _on_Enemy_hitted(hp_left):
-	$GUI/BossStats/HPBar.region_rect.size.x = hp_left * Global.game_width()
+func _on_Enemy_hitted(hp_left: float):
+	($GUI/BossStats/HPBar as Sprite).region_rect.size.x = hp_left * Global.game_width()
 
 
 func _on_Enemy_died():
-	$ScrollingBackground.stop_scrolling()
+	($ScrollingBackground as ScrollingBackground).stop_scrolling()
 	yield(get_tree().create_timer(2), "timeout")
 	var node = Scroll.instance()
 	node.init(_element)
-	node.position = $Game/Enemy.position
+	node.position = ($Game/Enemy as Enemy).position
 	$Game.add_child(node)
 	_scroll_fall(node)
 
 
 func _on_Player_hitted(hp_left):
-	var max_width = $GUI/PlayerStats/HPBarBackground.rect_size.x
-	$GUI/PlayerStats/HPBarBackground/HPBar.rect_size.x = hp_left * max_width
+	var max_width = ($GUI/PlayerStats/HPBarBackground as ColorRect).rect_size.x
+	($GUI/PlayerStats/HPBarBackground/HPBar as ColorRect).rect_size.x = hp_left * max_width

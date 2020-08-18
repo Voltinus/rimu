@@ -15,7 +15,7 @@ const gradients = {
 func init(elem: String):
 	_element = elem
 	($Sprite as Sprite).texture = load("res://objects/Scroll/scroll_%s.png" % elem)
-	($Particles2D as Particles2D).process_material.color_ramp.gradient.colors = PoolColorArray(gradients[elem])
+	((($Particles2D as Particles2D).process_material as ParticlesMaterial).color_ramp as GradientTexture).gradient.colors = PoolColorArray(gradients[elem])
 
 
 var next_scene = {
