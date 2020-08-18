@@ -7,6 +7,7 @@ var FireLine  = preload("res://objects/FireLine/FireLine.tscn")
 
 func _ready():
 	states = [
+		{ "callback": "spawn_lava_walls" },
 		{ "wait": 1 },
 		{ "callback": "byle_jak" },
 		{ "target": Vector2(0.8, 0.2) },
@@ -56,7 +57,7 @@ func curtain():
 			for k in range(2):
 				if not alive:
 					return
-				var node = Bullet.instance()
+				var node = EnemyBullet.instance()
 				var vel = Vector2(0, 1)
 				var pos
 				if k:
@@ -83,9 +84,10 @@ func fire_lines():
 	yield(get_tree().create_timer(5), 'timeout')
 	callback_ended = true
 
-func spawn_lava_walls():
-	var lava_walls_instance = LavaWalls.instance()
-	$"/root/Level1Fire/Game".add_child(lava_walls_instance)
+func spawn_lava_walls() -> void:
+	var lava_walls_instance: Area2D = LavaWalls.instance()
+	($"/root/Level1Fire/Game" as Node2D).add_child(lava_walls_instance)
+	callback_ended = true
 
 func despawn_lava_walls():
 	pass
@@ -96,12 +98,12 @@ func _on_ShootTimer_timeout():
 	
 	if float(hp)/MAX_HP < 0.5:
 		for i in range(3):
-			var node = Bullet.instance()
-			var vel = ((get_node('../Player') as Player).position - position + Vector2((i-1)*10, 0)).normalized()
+			var node: EnemyBullet = EnemyBullet.instance()
+			var vel: Vector2 = ((get_node('../Player') as Player).position - position + Vector2((i-1)*10, 0)).normalized()
 			node.init(vel, position, 'flame')
 			get_parent().add_child(node)
 	else:
-		var node = Bullet.instance()
-		var vel = ((get_node('../Player') as Player).position - position).normalized()
+		var node: EnemyBullet = EnemyBullet.instance()
+		var vel: Vector2 = ((get_node('../Player') as Player).position - position).normalized()
 		node.init(vel, position, _element)
 		get_parent().add_child(node)

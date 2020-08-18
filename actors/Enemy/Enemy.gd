@@ -2,28 +2,28 @@ extends KinematicBody2D
 class_name Enemy
 
 
-const MAX_HP = 100
-var hp = MAX_HP
-var alive = true
-var _element = null
+const MAX_HP: int = 100
+var hp: int = MAX_HP
+var alive: bool = true
+var _element: String
 
-var Bullet = preload('res://objects/EnemyBullet/EnemyBullet.tscn')
+var EnemyBullet = preload('res://objects/EnemyBullet/EnemyBullet.tscn')
 
 signal hitted(hp_left)
 signal died
 
-var shooting = true
+var shooting: bool = true
 
 var current_state: int = 0
-var states = [
+var states: Array = [
 	{ 'target': Vector2(0.5, 0.1) }
 ]
 
 # These states are copied by reference to "states"
 # after reaching tresholds 75%, 50% and 25% hp
-var states2 = null
-var states3 = null
-var states4 = null
+var states2: Array = []
+var states3: Array = []
+var states4: Array = []
 
 
 func init(element):
@@ -32,14 +32,12 @@ func init(element):
 	do_state()
 
 
-func burst(n, d = -1):
-	n = float(n)
-	
+func burst(n: float, d: float = -1):
 	if d == -1:
 		d = randf()
 	
 	for i in range(n):
-		var node = Bullet.instance()
+		var node = EnemyBullet.instance()
 		var vel = Vector2(sin((i/n)*TAU + d), cos((i/n)*TAU + d))
 		node.init(vel, position, _element)
 		get_parent().add_child(node)
@@ -47,24 +45,24 @@ func burst(n, d = -1):
 
 var treshold_reached = 0
 
-func hit(damage):
+func hit(damage: int):
 	if !alive:
 		return
 	
-	hp = max(0, hp - damage)
+	hp = int(max(0, hp - damage))
 	emit_signal('hitted', float(hp)/MAX_HP)
 	($AnimationPlayer as AnimationPlayer).play('damage')
 	if hp == 0:
 		emit_signal('died')
 		alive = false
 	
-	if float(hp)/MAX_HP <= 0.75 and states2 != null:
+	if float(hp)/MAX_HP <= 0.75 and states2 != []:
 		treshold_reached = 2
 	
-	if float(hp)/MAX_HP <= 0.5 and states3 != null:
+	if float(hp)/MAX_HP <= 0.5 and states3 != []:
 		treshold_reached = 3
 	
-	if float(hp)/MAX_HP <= 0.25 and states4 != null:
+	if float(hp)/MAX_HP <= 0.25 and states4 != []:
 		treshold_reached = 4
 	
 	
@@ -74,9 +72,9 @@ var speed_multilplier = 1
 var velocity : Vector2
 var target   = Vector2(60, 20)
 
-var target_reached = false
-var delay_finished = false
-var callback_ended = false
+var target_reached: bool = false
+var delay_finished: bool = false
+var callback_ended: bool = false
 
 func do_state():
 	while alive:
@@ -119,13 +117,13 @@ func do_state():
 			match treshold_reached:
 				2:
 					states = states2
-					states2 = null
+					states2 = []
 				3:
 					states = states3
-					states3 = null
+					states3 = []
 				4:
 					states = states4
-					states4 = null
+					states4 = []
 			current_state = 0
 			treshold_reached = 0
 		
@@ -133,7 +131,7 @@ func do_state():
 		delay_finished = false
 		callback_ended = false
 
-func _physics_process(_delta):
+func _physics_process(_delta: float) -> void:
 	if states[current_state].has("target"):
 		var current_target = states[current_state].target
 		current_target *= Vector2(Global.game_width(), Global.game_height())
@@ -149,7 +147,7 @@ func _on_ShootTimer_timeout():
 	if not alive or !shooting or get_node('../Player') == null:
 		return
 	
-	var node = Bullet.instance()
+	var node = EnemyBullet.instance()
 	var vel = ((get_node('../Player') as Player).position - position).normalized()
 	node.init(vel, position, _element)
 	get_parent().add_child(node)
