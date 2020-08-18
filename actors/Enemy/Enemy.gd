@@ -55,6 +55,8 @@ func hit(damage: int):
 	if hp == 0:
 		emit_signal('died')
 		alive = false
+		if _element == "fire":
+			($"../LavaWalls" as LavaWalls).slide_out()
 	
 	if float(hp)/MAX_HP <= 0.75 and states2 != []:
 		treshold_reached = 2

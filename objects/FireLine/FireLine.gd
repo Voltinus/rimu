@@ -8,7 +8,7 @@ const FADE_OUT_PRECISION = 10   # Fade out precision, how many steps would fade 
 
 func _ready():
 	yield(get_tree().create_timer(TIME_BEFORE), "timeout")
-	$AnimatedSprite.play("fire")
+	($AnimatedSprite as AnimatedSprite).play("fire")
 	burning = true
 	yield(get_tree().create_timer(TIME_AFTER), "timeout")
 	for i in range(FADE_OUT_PRECISION):

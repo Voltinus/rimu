@@ -8,7 +8,7 @@ var _element: String
 
 
 func init(vel: Vector2, pos: Vector2, elem: String) -> void:
-	velocity = vel.normalized()
+	velocity = vel
 	position = pos
 	_element = elem
 	($AnimatedSprite as AnimatedSprite).play(elem)

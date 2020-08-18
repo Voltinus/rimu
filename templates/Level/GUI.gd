@@ -20,5 +20,5 @@ const BOSS_BAR_COLORS = {
 
 
 func init(elem: String) -> void:
-	$BossStats/Name.text = BOSS_NAMES[elem]
-	$BossStats/HPBar.modulate = BOSS_BAR_COLORS[elem]
+	($BossStats/Name as Label).text = BOSS_NAMES[elem]
+	($BossStats/HPBar as Sprite).modulate = BOSS_BAR_COLORS[elem]
