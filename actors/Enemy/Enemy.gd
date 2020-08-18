@@ -55,7 +55,7 @@ func hit(damage: int):
 	if hp == 0:
 		emit_signal('died')
 		alive = false
-		if _element == "fire":
+		if _element == "fire" and ($"../LavaWalls" as LavaWalls) != null:
 			($"../LavaWalls" as LavaWalls).slide_out()
 	
 	if float(hp)/MAX_HP <= 0.75 and states2 != []:
