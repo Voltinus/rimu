@@ -23,7 +23,9 @@ func _ready():
 		{ "target": Vector2(0.5, 0.1) },
 		{ "shooting": false },
 		{ "callback": "curtain" },
+		{ "shooting": true },
 		{ "callback": "fire_lines" },
+		{ "shooting": false },
 		{ "callback": "triple_burst" },
 		
 	]
@@ -52,25 +54,31 @@ func curtain():
 	for i in range(5):
 		for j in range(10):
 			for k in range(2):
+				if not alive:
+					return
 				var node = Bullet.instance()
 				var vel = Vector2(0, 1)
 				var pos
 				if k:
-					pos = Vector2(Global.game_width() * (0.1 + i/12.0), -3)
+					pos = Vector2(Global.game_width() * (0.05 + i/12.0 + j/100.0 - randf()/100), -3)
 				else:
-					pos = Vector2(Global.game_width() * (0.9 - i/12.0), -3)
-				node.init(vel, pos, _element)
+					pos = Vector2(Global.game_width() * (0.95 - i/12.0 - j/100.0 + randf()/100), -3)
+				node.init(vel, pos, "flame")
 				get_parent().add_child(node)
-			yield(get_tree().create_timer(0.15), 'timeout')
-		yield(get_tree().create_timer(0.3), 'timeout')
+			yield(get_tree().create_timer(0.1), 'timeout')
+		yield(get_tree().create_timer(0.2), 'timeout')
 	callback_ended = true
 
 func fire_lines():
 	for i in range(3):
+		if not alive:
+			return
 		var node = FireLine.instance()
-		node.position = Vector2(Global.game_width() * 0.5, Global.game_height() * (0.1 + i*0.3 + randf()/5))
-		print(node.position)
+		var node2 = FireLine.instance()
+		node.position = Vector2(Global.game_width() * 0.25, Global.game_height() * (0.1 + i*0.3 + randf()/5))
+		node2.position = node.position + Vector2(Global.game_width() * 0.5, 0)
 		get_parent().add_child(node)
+		get_parent().add_child(node2)
 		yield(get_tree().create_timer(0.3), 'timeout')
 	yield(get_tree().create_timer(5), 'timeout')
 	callback_ended = true

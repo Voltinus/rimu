@@ -3,15 +3,13 @@
 [ext_resource path="res://objects/Scroll/Scroll.gd" type="Script" id=1]
 [ext_resource path="res://objects/Scroll/scroll_fire.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 1, 1, 0.498039, 1, 1, 1, 1, 0.254902 )
 
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-[sub_resource type="ParticlesMaterial" id=4]
+[sub_resource type="ParticlesMaterial" id=3]
 emission_shape = 1
 emission_sphere_radius = 1.0
 flag_disable_z = true
@@ -19,19 +17,21 @@ gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 tangential_accel = 48.28
-color_ramp = SubResource( 3 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="RectangleShape2D" id=4]
 
 [node name="Scroll" type="Area2D"]
 script = ExtResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+amount = 12
+process_material = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 1 )
-
-[node name="Particles2D" type="Particles2D" parent="."]
-amount = 12
-process_material = SubResource( 4 )
+shape = SubResource( 4 )
 [connection signal="body_entered" from="." to="." method="_on_Scroll_body_entered"]
