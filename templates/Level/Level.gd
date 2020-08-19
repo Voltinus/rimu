@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var _element
+var _element: String
 
 
 var Scroll = preload("res://objects/Scroll/Scroll.tscn")
@@ -20,7 +20,7 @@ func _scroll_fall(node: Scroll):
 		yield(get_tree().create_timer(0.05), "timeout")
 	_scroll_bounce(node)
 
-func _scroll_bounce(node):
+func _scroll_bounce(node: Scroll):
 	while true:
 		for _i in range(3):
 			node.position.y -= 1
@@ -37,7 +37,7 @@ func _on_Enemy_hitted(hp_left: float):
 func _on_Enemy_died():
 	($ScrollingBackground as ScrollingBackground).stop_scrolling()
 	yield(get_tree().create_timer(2), "timeout")
-	var node = Scroll.instance()
+	var node: Scroll = Scroll.instance()
 	node.init(_element)
 	node.position = ($Game/Enemy as Enemy).position
 	$Game.add_child(node)
@@ -45,5 +45,4 @@ func _on_Enemy_died():
 
 
 func _on_Player_hitted(hp_left):
-	var max_width = ($GUI/PlayerStats/HPBarBackground as ColorRect).rect_size.x
-	($GUI/PlayerStats/HPBarBackground/HPBar as ColorRect).rect_size.x = hp_left * max_width
+	($GUI/PlayerStats/HPBar as Sprite).scale.x = int(hp_left * 103)
