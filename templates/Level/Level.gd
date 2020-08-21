@@ -45,4 +45,4 @@ func _on_Enemy_died():
 
 
 func _on_Player_hitted(hp_left):
-	($GUI/PlayerStats/HPBar as Sprite).scale.x = int(hp_left * 103)
+	($GUI/PlayerStats/HPBar as Sprite).scale.x = int(hp_left * 112)

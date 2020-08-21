@@ -12,7 +12,7 @@ func _ready():
 
 func _process(delta):
 	counter += delta
-	if counter >= delay:
+	if get_parent().has_node("Player") and counter >= delay:
 		var Player = get_parent().get_node("Player")
 		if Player != null and overlaps_body(Player):
 			Player.hit(1)

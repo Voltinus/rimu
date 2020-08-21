@@ -2,7 +2,7 @@ extends KinematicBody2D
 class_name Enemy
 
 
-const MAX_HP: int = 100
+const MAX_HP: int = 1000
 var hp: int = MAX_HP
 var alive: bool = true
 var _element: String
@@ -26,7 +26,7 @@ var states3: Array = []
 var states4: Array = []
 
 
-func init(element):
+func init(element: String):
 	_element = element
 	($AnimatedSprite as AnimatedSprite).animation = element
 	do_state()
@@ -37,8 +37,8 @@ func burst(n: float, d: float = -1):
 		d = randf()
 	
 	for i in range(n):
-		var node = EnemyBullet.instance()
-		var vel = Vector2(sin((i/n)*TAU + d), cos((i/n)*TAU + d))
+		var node: EnemyBullet = EnemyBullet.instance()
+		var vel: Vector2 = Vector2(sin((i/n)*TAU + d), cos((i/n)*TAU + d))
 		node.init(vel, position, _element)
 		get_parent().add_child(node)
 
@@ -70,7 +70,7 @@ func hit(damage: int):
 	
 
 const SPEED = 30
-var speed_multilplier = 1
+var speed_multilplier: int = 1
 var velocity : Vector2
 var target   = Vector2(60, 20)
 
