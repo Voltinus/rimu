@@ -6,6 +6,7 @@ var velocity: Vector2
 export var speed: int = 120
 export var max_hp: int = 20
 var hp: int = max_hp
+var shooting: bool = true
 
 var Bullet: PackedScene = preload("res://objects/PlayerBullet/PlayerBullet.tscn")
 
@@ -33,6 +34,7 @@ func _physics_process(_delta) -> void:
 
 
 func _on_ShootTimer_timeout() -> void:
+	if !shooting: return
 	var node: PlayerBullet = Bullet.instance()
 	node.init(Vector2(0, -1), position + Vector2(0, -20))
 	get_parent().add_child(node)

@@ -68,7 +68,7 @@ config/icon="res://misc/icon.png"
 
 [autoload]
 
-Global="*res://Global.gd"
+Global="*res://misc/Global.gd"
 Transition="*res://misc/Transition/Transition.tscn"
 
 [debug]
@@ -84,7 +84,6 @@ window/size/width=400
 window/size/height=300
 window/size/test_width=800
 window/size/test_height=600
-mouse_cursor/custom_image="res://gui/cursor.png"
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
