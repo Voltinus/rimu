@@ -2,7 +2,7 @@ extends KinematicBody2D
 class_name Enemy
 
 
-const MAX_HP: int = 1000
+const MAX_HP: int = 100
 var hp: int = MAX_HP
 var alive: bool = true
 var _element: String
@@ -55,7 +55,7 @@ func hit(damage: int):
 	if hp == 0:
 		emit_signal('died')
 		alive = false
-		if _element == "fire" and ($"../LavaWalls" as LavaWalls) != null:
+		if _element == "fire" and get_parent().has_node("LavaWalls"):
 			($"../LavaWalls" as LavaWalls).slide_out()
 	
 	if float(hp)/MAX_HP <= 0.75 and states2 != []:
@@ -66,8 +66,9 @@ func hit(damage: int):
 	
 	if float(hp)/MAX_HP <= 0.25 and states4 != []:
 		treshold_reached = 4
-	
-	
+
+func _on_Enemy_died():
+	pass
 
 const SPEED = 30
 var speed_multilplier: int = 1
