@@ -13,6 +13,7 @@ signal hitted(hp_left)
 signal died
 
 var shooting: bool = true
+var darkness := false
 
 var current_state: int = 0
 var states: Array = [
@@ -144,7 +145,6 @@ func _physics_process(_delta: float) -> void:
 			target_reached = true
 
 
-
 func _on_ShootTimer_timeout():
 	if not alive or !shooting or get_node('../Player') == null:
 		return
@@ -153,3 +153,9 @@ func _on_ShootTimer_timeout():
 	var vel = ((get_node('../Player') as Player).position - position).normalized()
 	node.init(vel, position, _element)
 	get_parent().add_child(node)
+
+
+func set_darkness():
+	darkness = true
+	yield(get_tree().create_timer(3), 'timeout')
+	darkness = false

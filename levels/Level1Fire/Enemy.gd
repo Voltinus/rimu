@@ -45,6 +45,7 @@ func byle_jak():
 	for _j in range(50):
 		if not alive:
 			return
+		while darkness: yield(get_tree().create_timer(0.01), 'timeout')
 		burst(24)
 		yield(get_tree().create_timer(0.15), 'timeout')
 	callback_ended = true
@@ -55,6 +56,7 @@ func triple_burst():
 		for j in range(5):
 			if not alive:
 				return
+			while darkness: yield(get_tree().create_timer(0.01), 'timeout')
 			burst(24, j/10.0)
 			yield(get_tree().create_timer(0.15), 'timeout')
 		yield(get_tree().create_timer(0.5), 'timeout')
@@ -66,6 +68,7 @@ func triple_maze():
 		if not alive:
 			return
 		var rand_int: int = randi()%15 + 12
+		while darkness: yield(get_tree().create_timer(0.01), 'timeout')
 		for k in range(40):
 			if rand_int in range(k, k+2): continue
 			var node = EnemyBullet.instance()
@@ -82,6 +85,7 @@ func curtain():
 			for k in range(2):
 				if not alive:
 					return
+				while darkness: yield(get_tree().create_timer(0.01), 'timeout')
 				var node = EnemyBullet.instance()
 				var vel = Vector2(0, 2)
 				var pos
@@ -99,6 +103,7 @@ func fire_lines():
 	for i in range(3):
 		if not alive:
 			return
+		while darkness: yield(get_tree().create_timer(0.01), 'timeout')
 		var node = FireLine.instance()
 		var node2 = FireLine.instance()
 		node.position = Vector2(Global.game_width() * 0.25, Global.game_height() * (0.1 + i*0.3 + randf()/5))
@@ -115,7 +120,7 @@ func spawn_lava_walls() -> void:
 	callback_ended = true
 
 func _on_ShootTimer_timeout():
-	if not alive or !shooting or (get_node('../Player') as Player) == null:
+	if not alive or !shooting or darkness or (get_node('../Player') as Player) == null:
 		return
 	
 	if float(hp)/MAX_HP < 0.5:

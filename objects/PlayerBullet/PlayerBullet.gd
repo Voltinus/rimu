@@ -1,16 +1,14 @@
 extends Area2D
 class_name PlayerBullet
 
-const _SPEED = 300
+var _SPEED = 300
 var velocity = Vector2()
 
 
-func init(vel, pos):
-	if vel.length() >= 1:
-		velocity = vel.normalized()
-	else:
-		velocity = vel
+func init(vel, pos, type = "default"):
+	velocity = vel.normalized()
 	position = pos
+	($AnimatedSprite as AnimatedSprite).play(type)
 
 
 func _physics_process(delta):

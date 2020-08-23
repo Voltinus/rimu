@@ -25,6 +25,9 @@ normal = Vector2( 0, 1 )
 [node name="Level" type="Node2D"]
 script = ExtResource( 4 )
 
+[node name="BookSpawner" type="Timer" parent="."]
+autostart = true
+
 [node name="ScrollingBackground" parent="." instance=ExtResource( 1 )]
 scale = Vector2( 2, 2 )
 
@@ -119,7 +122,8 @@ centered = false
 position = Vector2( 27, 20 )
 texture = ExtResource( 10 )
 centered = false
-[connection signal="hitted" from="Game/Player" to="." method="_on_Player_hitted"]
-[connection signal="died" from="Game/Enemy" to="." method="_on_Enemy_died"]
+[connection signal="timeout" from="BookSpawner" to="." method="_on_BookSpawner_timeout"]
+[connection signal="hp_changed" from="Game/Player" to="." method="_on_Player_hp_changed"]
 [connection signal="died" from="Game/Enemy" to="Game/Player" method="_on_Enemy_died"]
+[connection signal="died" from="Game/Enemy" to="." method="_on_Enemy_died"]
 [connection signal="hitted" from="Game/Enemy" to="." method="_on_Enemy_hitted"]
