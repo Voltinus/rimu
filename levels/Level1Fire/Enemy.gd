@@ -36,6 +36,7 @@ func _ready():
 		{ "callback": "spawn_lava_walls" },
 		{ "label": "start" },
 		{ "callback": "triple_maze" },
+		{ "callback": "fire_lines" },
 		{ "next": "start" },
 	]
 

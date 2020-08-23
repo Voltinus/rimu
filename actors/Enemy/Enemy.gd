@@ -71,8 +71,7 @@ func hit(damage: int):
 
 const SPEED = 30
 var speed_multilplier: int = 1
-var velocity : Vector2
-var target   = Vector2(60, 20)
+var velocity: Vector2
 
 var target_reached: bool = false
 var delay_finished: bool = false

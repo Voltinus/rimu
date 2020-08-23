@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Book_TurnPage_05.ogg-d69721a47a157ac48a4607dcb4f05e96.oggstr"
+
+[deps]
+
+source_file="res://objects/Book/Book_TurnPage_05.ogg"
+dest_files=[ "res://.import/Book_TurnPage_05.ogg-d69721a47a157ac48a4607dcb4f05e96.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
