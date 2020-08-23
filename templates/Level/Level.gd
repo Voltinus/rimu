@@ -49,7 +49,6 @@ func _on_BookSpawner_timeout():
 	var node: Book = Book.instance()
 	node.position = Vector2(randf()*Global.game_width(), -5)
 	$Game.add_child(node)
-	print("book added at " + str(node.position))
 
 
 func _on_Player_hp_changed(hp_left):
