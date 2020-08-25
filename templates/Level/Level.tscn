@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://templates/ScrollingBackground/ScrollingBackground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://actors/Player/Player.tscn" type="PackedScene" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://gui/gui.png" type="Texture" id=8]
 [ext_resource path="res://gui/gui_hp.png" type="Texture" id=9]
 [ext_resource path="res://gui/gui_addon_hp.png" type="Texture" id=10]
+[ext_resource path="res://misc/white.png" type="Texture" id=11]
+[ext_resource path="res://objects/Book/pu_books.png" type="Texture" id=12]
 
 [sub_resource type="LineShape2D" id=1]
 normal = Vector2( 1, 0 )
@@ -22,6 +24,99 @@ normal = Vector2( 0, 1 )
 
 [sub_resource type="LineShape2D" id=4]
 
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+void fragment() {
+	vec3 c = texture(SCREEN_TEXTURE, SCREEN_UV, 0.0).rgb;
+	
+	COLOR.rgb = vec3((c.r*2.0 + c.g*3.0 + c.b)/6.0);
+}"
+custom_defines = ""
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 12 )
+region = Rect2( 42, 0, 6, 7 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 12 )
+region = Rect2( 36, 0, 6, 7 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 12 )
+region = Rect2( 30, 0, 6, 7 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 12 )
+region = Rect2( 24, 0, 6, 7 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 12 )
+region = Rect2( 12, 0, 6, 7 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 6, 7 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 12 )
+region = Rect2( 18, 0, 6, 7 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 12 )
+region = Rect2( 6, 0, 6, 7 )
+
+[sub_resource type="SpriteFrames" id=15]
+animations = [ {
+"frames": [ SubResource( 7 ) ],
+"loop": true,
+"name": "gray",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 8 ) ],
+"loop": true,
+"name": "black",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 9 ) ],
+"loop": true,
+"name": "white",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 10 ) ],
+"loop": true,
+"name": "dark",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 11 ) ],
+"loop": true,
+"name": "water",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 12 ) ],
+"loop": true,
+"name": "fire",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 13 ) ],
+"loop": true,
+"name": "air",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 14 ) ],
+"loop": true,
+"name": "earth",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "none",
+"speed": 5.0
+} ]
+
 [node name="Level" type="Node2D"]
 script = ExtResource( 4 )
 
@@ -32,9 +127,6 @@ autostart = true
 scale = Vector2( 2, 2 )
 
 [node name="Game" type="Node2D" parent="."]
-
-[node name="Player" parent="Game" instance=ExtResource( 2 )]
-position = Vector2( 120, 250 )
 
 [node name="Walls" type="StaticBody2D" parent="Game"]
 collision_layer = 16
@@ -58,6 +150,24 @@ shape = SubResource( 4 )
 [node name="Enemy" parent="Game" instance=ExtResource( 5 )]
 position = Vector2( 120, 30 )
 collision_mask = 4
+
+[node name="Bullets" type="Node2D" parent="Game"]
+
+[node name="StopTimeShader" type="Sprite" parent="Game" groups=[
+"stop_time_shader",
+]]
+visible = false
+material = SubResource( 6 )
+scale = Vector2( 240, 300 )
+texture = ExtResource( 11 )
+centered = false
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Game/StopTimeShader"]
+scale = Vector2( 0.00416667, 0.00333333 )
+rect = Rect2( 0, 0, 240, 300 )
+
+[node name="Player" parent="Game" instance=ExtResource( 2 )]
+position = Vector2( 120, 250 )
 
 [node name="GUI" type="Control" parent="."]
 margin_right = 40.0
@@ -93,11 +203,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HPBar" type="Sprite" parent="GUI/BossStats"]
+[node name="HPBar" type="TextureRect" parent="GUI/BossStats"]
+margin_right = 240.0
+margin_bottom = 5.0
 texture = ExtResource( 7 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 0, 0, 240, 5 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PlayerStats" type="Control" parent="GUI"]
 margin_left = 240.0
@@ -107,23 +221,49 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GUIBackground" type="Sprite" parent="GUI/PlayerStats"]
+[node name="GUIBackground" type="TextureRect" parent="GUI/PlayerStats"]
 texture = ExtResource( 8 )
-centered = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="HPBar" type="Sprite" parent="GUI/PlayerStats"]
+[node name="BookSlot" type="AnimatedSprite" parent="GUI/PlayerStats" groups=[
+"book_slot",
+]]
+position = Vector2( 148, 151 )
+frames = SubResource( 15 )
+animation = "none"
+
+[node name="HP" type="Control" parent="GUI/PlayerStats"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HPBar" type="TextureRect" parent="GUI/PlayerStats/HP"]
 modulate = Color( 1, 0, 0, 1 )
-position = Vector2( 27, 20 )
-scale = Vector2( 112, 1 )
+margin_left = 27.0
+margin_top = 20.0
+margin_right = 139.0
+margin_bottom = 30.0
 texture = ExtResource( 9 )
-centered = false
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="HPBarOverlay" type="Sprite" parent="GUI/PlayerStats"]
-position = Vector2( 27, 20 )
+[node name="HPBarOverlay" type="TextureRect" parent="GUI/PlayerStats/HP"]
+margin_left = 27.0
+margin_top = 20.0
+margin_right = 139.0
+margin_bottom = 30.0
 texture = ExtResource( 10 )
-centered = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="timeout" from="BookSpawner" to="." method="_on_BookSpawner_timeout"]
-[connection signal="hp_changed" from="Game/Player" to="." method="_on_Player_hp_changed"]
 [connection signal="died" from="Game/Enemy" to="Game/Player" method="_on_Enemy_died"]
 [connection signal="died" from="Game/Enemy" to="." method="_on_Enemy_died"]
 [connection signal="hitted" from="Game/Enemy" to="." method="_on_Enemy_hitted"]
+[connection signal="hp_changed" from="Game/Player" to="." method="_on_Player_hp_changed"]

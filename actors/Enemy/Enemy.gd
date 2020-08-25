@@ -20,7 +20,7 @@ var states: Array = [
 	{ 'target': Vector2(0.5, 0.1) }
 ]
 
-# These states are copied by reference to "states"
+# These states are copied by reference to 'states'
 # after reaching tresholds 75%, 50% and 25% hp
 var states2: Array = []
 var states3: Array = []
@@ -56,8 +56,8 @@ func hit(damage: int):
 	if hp == 0:
 		emit_signal('died')
 		alive = false
-		if _element == "fire" and get_parent().has_node("LavaWalls"):
-			($"../LavaWalls" as LavaWalls).slide_out()
+		if _element == 'fire' and get_parent().has_node('LavaWalls'):
+			($'../LavaWalls' as LavaWalls).slide_out()
 	
 	if float(hp)/MAX_HP <= 0.75 and states2 != []:
 		treshold_reached = 2
@@ -90,17 +90,17 @@ func do_state():
 		if !states[current_state].has('callback'):
 			callback_ended = true
 		
-		if states[current_state].has("shooting"):
+		if states[current_state].has('shooting'):
 			shooting = states[current_state].shooting
 		
-		if states[current_state].has("callback"):
+		if states[current_state].has('callback'):
 			call(states[current_state].callback)
 		
-		if states[current_state].has("wait"):
-			yield(get_tree().create_timer(states[current_state].wait), "timeout")
+		if states[current_state].has('wait'):
+			yield(get_tree().create_timer(states[current_state].wait), 'timeout')
 			delay_finished = true
 		
-		if states[current_state].has("speed"):
+		if states[current_state].has('speed'):
 			speed_multilplier = states[current_state].speed
 		
 		while !target_reached: yield(get_tree().create_timer(0.01), 'timeout')
@@ -108,9 +108,9 @@ func do_state():
 		while !callback_ended: yield(get_tree().create_timer(0.01), 'timeout')
 		
 		if !treshold_reached:
-			if states[current_state].has("next"):
+			if states[current_state].has('next'):
 				for i in range(0, states.size()):
-					if states[i].has("label") and states[i].label == states[current_state].next:
+					if states[i].has('label') and states[i].label == states[current_state].next:
 						current_state = i
 			elif current_state+1 == states.size():
 				current_state = 0
@@ -135,7 +135,7 @@ func do_state():
 		callback_ended = false
 
 func _physics_process(_delta: float) -> void:
-	if states[current_state].has("target"):
+	if states[current_state].has('target'):
 		var current_target = states[current_state].target
 		current_target *= Vector2(Global.game_width(), Global.game_height())
 		if position.distance_to(current_target) > 1:
@@ -152,10 +152,15 @@ func _on_ShootTimer_timeout():
 	var node = EnemyBullet.instance()
 	var vel = ((get_node('../Player') as Player).position - position).normalized()
 	node.init(vel, position, _element)
-	get_parent().add_child(node)
+	$'../Bullets'.add_child(node)
 
 
 func set_darkness():
 	darkness = true
 	yield(get_tree().create_timer(3), 'timeout')
 	darkness = false
+
+func time_stopped():
+	($AnimatedSprite as AnimatedSprite).stop()
+	while Global.time_stopped: yield(get_tree().create_timer(0.01), 'timeout')
+	($AnimatedSprite as AnimatedSprite).play()

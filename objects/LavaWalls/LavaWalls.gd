@@ -23,6 +23,7 @@ signal slided
 
 func slide_in():
 	for i in range(Global.game_height()):
+		while Global.time_stopped: yield(get_tree().create_timer(0.01), 'timeout')
 		position.y = i - Global.game_height()
 		yield(get_tree().create_timer(0.01), "timeout")
 	
@@ -31,6 +32,7 @@ func slide_in():
 
 func slide_out():
 	for i in range(Global.game_height()):
+		while Global.time_stopped: yield(get_tree().create_timer(0.01), 'timeout')
 		position.y = i
 		yield(get_tree().create_timer(0.01), "timeout")
 	

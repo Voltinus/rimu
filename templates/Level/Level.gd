@@ -32,7 +32,7 @@ func _scroll_bounce(node: Scroll):
 
 
 func _on_Enemy_hitted(hp_left: float):
-	($GUI/BossStats/HPBar as Sprite).region_rect.size.x = hp_left * Global.game_width()
+	($GUI/BossStats/HPBar as TextureRect).rect_size.x = hp_left * Global.game_width()
 
 
 func _on_Enemy_died():
@@ -52,4 +52,4 @@ func _on_BookSpawner_timeout():
 
 
 func _on_Player_hp_changed(hp_left):
-	($GUI/PlayerStats/HPBar as Sprite).scale.x = int(hp_left * 112)
+	($GUI/PlayerStats/HP/HPBar as TextureRect).rect_size.x = int(hp_left * 112)

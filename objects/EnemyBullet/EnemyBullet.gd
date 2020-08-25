@@ -15,6 +15,7 @@ func init(vel: Vector2, pos: Vector2, elem: String) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if Global.time_stopped: return
 	position.x += velocity.x * _SPEED * delta
 	position.y += velocity.y * _SPEED * delta
 	if position.x < -5 or position.x > Global.game_width() + 5 or position.y < -5 or position.y > Global.game_height() + 5:

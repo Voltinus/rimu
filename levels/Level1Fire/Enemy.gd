@@ -46,6 +46,7 @@ func byle_jak():
 		if not alive:
 			return
 		while darkness: yield(get_tree().create_timer(0.01), 'timeout')
+		while Global.time_stopped: yield(get_tree().create_timer(0.01), 'timeout')
 		burst(24)
 		yield(get_tree().create_timer(0.15), 'timeout')
 	callback_ended = true
@@ -57,6 +58,7 @@ func triple_burst():
 			if not alive:
 				return
 			while darkness: yield(get_tree().create_timer(0.01), 'timeout')
+			while Global.time_stopped: yield(get_tree().create_timer(0.01), 'timeout')
 			burst(24, j/10.0)
 			yield(get_tree().create_timer(0.15), 'timeout')
 		yield(get_tree().create_timer(0.5), 'timeout')
@@ -69,6 +71,7 @@ func triple_maze():
 			return
 		var rand_int: int = randi()%15 + 12
 		while darkness: yield(get_tree().create_timer(0.01), 'timeout')
+		while Global.time_stopped: yield(get_tree().create_timer(0.01), 'timeout')
 		for k in range(40):
 			if rand_int in range(k, k+2): continue
 			var node = EnemyBullet.instance()
@@ -86,6 +89,7 @@ func curtain():
 				if not alive:
 					return
 				while darkness: yield(get_tree().create_timer(0.01), 'timeout')
+				while Global.time_stopped: yield(get_tree().create_timer(0.01), 'timeout')
 				var node = EnemyBullet.instance()
 				var vel = Vector2(0, 2)
 				var pos
@@ -104,6 +108,7 @@ func fire_lines():
 		if not alive:
 			return
 		while darkness: yield(get_tree().create_timer(0.01), 'timeout')
+		while Global.time_stopped: yield(get_tree().create_timer(0.01), 'timeout')
 		var node = FireLine.instance()
 		var node2 = FireLine.instance()
 		node.position = Vector2(Global.game_width() * 0.25, Global.game_height() * (0.1 + i*0.3 + randf()/5))
@@ -128,9 +133,9 @@ func _on_ShootTimer_timeout():
 			var node: EnemyBullet = EnemyBullet.instance()
 			var vel: Vector2 = ((get_node('../Player') as Player).position - position + Vector2((i-1)*10, 0)).normalized()
 			node.init(vel, position, 'flame')
-			get_parent().add_child(node)
+			$'../Bullets'.add_child(node)
 	else:
 		var node: EnemyBullet = EnemyBullet.instance()
 		var vel: Vector2 = ((get_node('../Player') as Player).position - position).normalized()
 		node.init(vel, position, _element)
-		get_parent().add_child(node)
+		$'../Bullets'.add_child(node)

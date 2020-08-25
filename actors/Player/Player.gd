@@ -32,13 +32,18 @@ func _physics_process(_delta) -> void:
 		velocity *= 0.5
 	
 	var _collisions = move_and_slide(velocity * speed)
+	
+	if Input.is_action_just_pressed('use_book'):
+		powerup('book', Global.player_book)
+		Global.player_book = ''
+		get_tree().get_nodes_in_group('book_slot')[0].play('none')
 
 
 func _on_ShootTimer_timeout() -> void:
 	if !shooting: return
 	var node: PlayerBullet = Bullet.instance()
 	node.init(Vector2(0, -1), position + Vector2(0, -20))
-	get_parent().add_child(node)
+	$'../Bullets'.add_child(node)
 
 
 func hit(damage: int) -> void:
@@ -83,4 +88,6 @@ func powerup(type: String, elem: String) -> void:
 					yield(get_tree().create_timer(5), 'timeout')
 					($ShootTimer as Timer).wait_time *= 2
 				'dark':
-					$'../Enemy'.set_darkness()
+					($'../Enemy').set_darkness()
+				'black':
+					Global.stop_time(3)
