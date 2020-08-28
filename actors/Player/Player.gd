@@ -72,12 +72,12 @@ func powerup(type: String, elem: String) -> void:
 								var d = 0
 								var node: = Bullet.instance()
 								var vel: Vector2 = Vector2(sin((i/24.0)*TAU + d), cos((i/24.0)*TAU + d))
-								node.init(vel, position, "round")
+								(node as PlayerBullet).init(vel, position, "round")
 								get_parent().add_child(node)
 							yield(get_tree().create_timer(0.15), 'timeout')
 						yield(get_tree().create_timer(0.5), 'timeout')
 				'water':
-					hp = min(hp + 7, MAX_HP)
+					hp = min(int(hp) + 7, MAX_HP)
 					emit_signal('hp_changed', float(hp)/MAX_HP)
 				'earth':
 					immortal = true
