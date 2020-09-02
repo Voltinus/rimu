@@ -6,7 +6,7 @@ var FireLine  = preload("res://objects/FireLine/FireLine.tscn")
 
 
 func _ready():
-	states= [
+	states = [
 		{ "wait": 1 },
 		{ "callback": "byle_jak" },
 		{ "target": Vector2(0.8, 0.2) },

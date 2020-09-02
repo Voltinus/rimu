@@ -38,11 +38,11 @@ var time_stopped := false
 
 func stop_time(t: int) -> void:
 	time_stopped = true
-	#get_tree().get_nodes_in_group("stop_time_shader")[0].visible = true
 	get_tree().call_group('should_stop_with_time', 'time_stopped')
 	yield(get_tree().create_timer(t), 'timeout')
-	#get_tree().get_nodes_in_group("stop_time_shader")[0].visible = false
 	time_stopped = false
 	pass
 
 var player_book: String = ''
+
+var bullets_avoid_player = false

@@ -89,5 +89,11 @@ func powerup(type: String, elem: String) -> void:
 					($ShootTimer as Timer).wait_time *= 2
 				'dark':
 					($'../Enemy').set_darkness()
+				'white':
+					Global.bullets_avoid_player = true
+					yield(get_tree().create_timer(5), 'timeout')
+					Global.bullets_avoid_player = false
 				'black':
 					Global.stop_time(3)
+				'gray':
+					get_tree().call_group('enemy_bullets', 'change_to_player_bullet')

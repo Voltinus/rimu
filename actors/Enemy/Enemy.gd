@@ -75,9 +75,9 @@ const SPEED = 30
 var speed_multilplier: int = 1
 var velocity: Vector2
 
-var target_reached: bool = false
-var delay_finished: bool = false
-var callback_ended: bool = false
+var target_reached := false
+var delay_finished := false
+var callback_ended := false
 
 func do_state():
 	while alive:
@@ -133,8 +133,11 @@ func do_state():
 		target_reached = false
 		delay_finished = false
 		callback_ended = false
+		
+		while Global.time_stopped: yield(get_tree().create_timer(0.01), 'timeout')
 
 func _physics_process(_delta: float) -> void:
+	if Global.time_stopped: return
 	if states[current_state].has('target'):
 		var current_target = states[current_state].target
 		current_target *= Vector2(Global.game_width(), Global.game_height())
@@ -161,6 +164,6 @@ func set_darkness():
 	darkness = false
 
 func time_stopped():
-	($AnimatedSprite as AnimatedSprite).stop()
+	($AnimatedSprite as AnimatedSprite).playing = false
 	while Global.time_stopped: yield(get_tree().create_timer(0.01), 'timeout')
-	($AnimatedSprite as AnimatedSprite).play()
+	($AnimatedSprite as AnimatedSprite).playing = true
