@@ -9,10 +9,17 @@ var hp := MAX_HP
 var shooting := true
 var immortal := false
 
+var hp_runes := 0 
+var attack_runes := 0
+
 var Bullet := preload('res://objects/PlayerBullet/PlayerBullet.tscn')
 
-signal hp_changed(hp_left)
+signal stats_changed(hp_left, hp_runes, attack_runes)
 signal died
+
+
+func _ready() -> void:
+	emit_signal('stats_changed', float(hp)/MAX_HP, hp_runes, attack_runes)
 
 
 func _physics_process(_delta) -> void:
@@ -50,7 +57,7 @@ func hit(damage: int) -> void:
 	if immortal: return
 	($AnimationPlayer as AnimationPlayer).play('damage')
 	hp = int(max(0, hp - damage))
-	emit_signal('hp_changed', float(hp)/MAX_HP)
+	emit_signal('stats_changed', float(hp)/MAX_HP, hp_runes, attack_runes)
 	if hp == 0:
 		emit_signal('died')
 		print('dead')

@@ -13,6 +13,9 @@ func init(elem: String):
 	($ScrollingBackground as ScrollingBackground).init(elem)
 	($GUI as GUI).init(elem)
 	($Game/Enemy as Enemy).init(elem)
+	
+	if Global.player_book != '':
+		(get_tree().get_nodes_in_group('book_slot')[0] as AnimatedSprite).play(Global.player_book)
 
 
 func _scroll_fall(node: Scroll):
@@ -32,7 +35,7 @@ func _scroll_bounce(node: Scroll):
 
 
 func _on_Enemy_hitted(hp_left: float):
-	($GUI/BossStats/HPBar as TextureRect).rect_size.x = hp_left * Global.game_width()
+	($GUI as GUI).update_boss_stats(hp_left)
 
 
 func _on_Enemy_died():
@@ -51,5 +54,6 @@ func _on_BookSpawner_timeout():
 	$Game.add_child(node)
 
 
-func _on_Player_hp_changed(hp_left):
-	($GUI/PlayerStats/HP/HPBar as TextureRect).rect_size.x = int(hp_left * 112)
+func _on_Player_stats_changed(hp_left: float, hp_runes: int, attack_runes: int):
+	($GUI as GUI).update_player_stats(hp_left)
+	

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pu_runes.png-8ff45915e03ce361cf19d8138c8f0c35.stex"
+path="res://.import/rune_hp.png-96fb552237a5bb382e2ba92cabfd5f71.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://objects/Rune/pu_runes.png"
-dest_files=[ "res://.import/pu_runes.png-8ff45915e03ce361cf19d8138c8f0c35.stex" ]
+source_file="res://objects/Rune/rune_hp.png"
+dest_files=[ "res://.import/rune_hp.png-96fb552237a5bb382e2ba92cabfd5f71.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/gui_addon_hp.png-6f70b34350574909cfa656cbb9475e11.stex"
+path="res://.import/gui.png-a5cda7676b3dac66b9610c8691213900.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/gui_addon_hp.png"
-dest_files=[ "res://.import/gui_addon_hp.png-6f70b34350574909cfa656cbb9475e11.stex" ]
+source_file="res://templates/Level/GUI/gui.png"
+dest_files=[ "res://.import/gui.png-a5cda7676b3dac66b9610c8691213900.stex" ]
 
 [params]
 
