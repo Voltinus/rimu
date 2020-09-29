@@ -11,7 +11,7 @@ var PlayerBullet := preload('res://objects/PlayerBullet/PlayerBullet.tscn')
 
 
 func init(vel: Vector2, pos: Vector2, elem: String) -> void:
-	factor = vel.length()
+	factor = int(vel.length())
 	if factor == 0: factor = 1
 	velocity = vel.normalized()
 	position = pos
@@ -37,9 +37,9 @@ func _physics_process(delta: float) -> void:
 		self.queue_free()
 
 
-func _on_EnemyBullet_body_entered(body: Node) -> void:
+func _on_EnemyBullet_body_entered(body) -> void:
 	if body.has_method("hit"):
-		(body as Player).hit(1)
+		body.hit(1)
 		self.queue_free()
 
 

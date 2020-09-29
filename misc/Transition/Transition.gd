@@ -10,7 +10,7 @@ func change_scene(scn: String) -> void:
 	color_rect.color = Color(0, 0, 0, 0)
 	
 	for i in range(10):
-		color_rect.color = Color(0, 0, 0, i/10.0)
+		color_rect.color = Color(0, 0, 0, i/9.0)
 		yield(get_tree().create_timer(0.01), "timeout")
 	
 	if get_tree().change_scene("res://levels/%s/%s.tscn" % [scn, scn]) != OK:
@@ -21,7 +21,7 @@ func change_scene(scn: String) -> void:
 	color_rect.color = Color(0, 0, 0, 1)
 	
 	for i in range(10):
-		color_rect.color = Color(0, 0, 0, 1 - i/10.0)
+		color_rect.color = Color(0, 0, 0, 1 - i/9.0)
 		yield(get_tree().create_timer(0.01), "timeout")
 	
 	get_tree().paused = false

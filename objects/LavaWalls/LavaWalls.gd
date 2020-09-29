@@ -2,8 +2,8 @@ extends Area2D
 class_name LavaWalls
 
 
-var counter = 0
-var delay = 0.5
+var counter := 0
+var delay := 0.5
 
 
 func _ready():

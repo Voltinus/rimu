@@ -1,8 +1,8 @@
 extends Area2D
 class_name PlayerBullet
 
-var _SPEED = 300
-var velocity = Vector2()
+var _SPEED := 300
+var velocity := Vector2()
 var bullet_type: String
 
 

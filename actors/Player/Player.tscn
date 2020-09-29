@@ -126,6 +126,5 @@ process_material = SubResource( 9 )
 [node name="Shield" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 15 )
-frame = 4
 playing = true
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

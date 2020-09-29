@@ -33,6 +33,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_Book_body_entered(body: Node2D):
 	if body.name == 'Player':
-		(get_tree().get_nodes_in_group('book_slot')[0] as AnimatedSprite).play(_type)
+		get_tree().get_nodes_in_group('book_slot')[0].play(_type)
 		Global.player_book = _type
 		self.queue_free()

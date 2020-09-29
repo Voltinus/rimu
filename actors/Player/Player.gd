@@ -77,14 +77,14 @@ func powerup(type: String, elem: String) -> void:
 						for _j in range(5):
 							for i in range(24):
 								var d = 0
-								var node: = Bullet.instance()
+								var node : PlayerBullet = Bullet.instance()
 								var vel: Vector2 = Vector2(sin((i/24.0)*TAU + d), cos((i/24.0)*TAU + d))
 								(node as PlayerBullet).init(vel, position, "round")
 								get_parent().add_child(node)
 							yield(get_tree().create_timer(0.15), 'timeout')
 						yield(get_tree().create_timer(0.5), 'timeout')
 				'water':
-					hp = min(int(hp) + 7, MAX_HP)
+					hp = int(min(hp + 7, MAX_HP))
 					emit_signal('hp_changed', float(hp)/MAX_HP)
 				'earth':
 					immortal = true
@@ -95,7 +95,7 @@ func powerup(type: String, elem: String) -> void:
 					yield(get_tree().create_timer(5), 'timeout')
 					($ShootTimer as Timer).wait_time *= 2
 				'dark':
-					($'../Enemy').set_darkness()
+					($'../Enemy' as Enemy).set_darkness()
 				'white':
 					Global.bullets_avoid_player = true
 					yield(get_tree().create_timer(5), 'timeout')

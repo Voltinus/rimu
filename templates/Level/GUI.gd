@@ -31,9 +31,9 @@ func update_boss_stats(hp_left: float) -> void:
 func update_player_stats(hp_left: float, hp_runes: int = 0, attack_runes: int = 0) -> void:
 	($PlayerStats/HP/HPBar as TextureProgress).value = int(hp_left * 100)
 	for i in range(3):
-		$PlayerStats/HPRunes.get_node('Rune' + str(i+1)).visible = i < hp_runes
+		($PlayerStats/HPRunes.get_node('Rune' + str(i+1)) as TextureRect).visible = i < hp_runes
 	for i in range(5):
-		$PlayerStats/AttackRunes.get_node('Rune' + str(i+1)).visible = i < attack_runes
+		($PlayerStats/AttackRunes.get_node('Rune' + str(i+1)) as TextureRect).visible = i < attack_runes
 
 
 func _on_Player_stats_changed(hp_left, hp_runes, attack_runes):

@@ -15,7 +15,7 @@ func init(elem: String):
 	($Game/Enemy as Enemy).init(elem)
 	
 	if Global.player_book != '':
-		(get_tree().get_nodes_in_group('book_slot')[0] as AnimatedSprite).play(Global.player_book)
+		get_tree().get_nodes_in_group('book_slot')[0].play(Global.player_book)
 
 
 func _scroll_fall(node: Scroll):
@@ -55,5 +55,5 @@ func _on_BookSpawner_timeout():
 
 
 func _on_Player_stats_changed(hp_left: float, hp_runes: int, attack_runes: int):
-	($GUI as GUI).update_player_stats(hp_left)
+	($GUI as GUI).update_player_stats(hp_left, hp_runes, attack_runes)
 	

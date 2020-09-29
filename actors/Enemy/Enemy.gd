@@ -153,7 +153,7 @@ func _on_ShootTimer_timeout():
 		return
 	
 	var node = EnemyBullet.instance()
-	var vel = ((get_node('../Player') as Player).position - position).normalized()
+	var vel = ((get_node('../Player') as Node2D).position - position).normalized()
 	node.init(vel, position, _element)
 	$'../Bullets'.add_child(node)
 
