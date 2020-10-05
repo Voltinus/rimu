@@ -128,7 +128,7 @@ func _on_ShootTimer_timeout():
 	if not alive or !shooting or darkness or (get_node('../Player') as Player) == null:
 		return
 	
-	if float(hp)/MAX_HP < 0.5:
+	if float(hp)/max_hp < 0.5:
 		for i in range(3):
 			var node: EnemyBullet = EnemyBullet.instance()
 			var vel: Vector2 = ((get_node('../Player') as Player).position - position + Vector2((i-1)*10, 0)).normalized()

@@ -22,7 +22,7 @@ func init(vel: Vector2, pos: Vector2, elem: String) -> void:
 func _physics_process(delta: float) -> void:
 	if Global.time_stopped: return
 	
-	if Global.bullets_avoid_player:
+	if Global.do_bullets_avoid_player():
 		var player_position: Vector2 = get_tree().get_nodes_in_group('player')[0].position
 		var distance = player_position.distance_to(position)
 		var direct_vector = (player_position - position).normalized()

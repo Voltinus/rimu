@@ -50,32 +50,42 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ButtonNewGame" type="Button" parent="."]
-margin_left = 160.0
+[node name="ButtonStoryMode" type="Button" parent="."]
+margin_left = 130.0
 margin_top = 160.0
-margin_right = 240.0
+margin_right = 270.0
 margin_bottom = 180.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 6 )
-text = "NEW_GAME"
+text = "STORY_MODE"
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="ButtonExit" type="Button" parent="."]
-margin_left = 160.0
-margin_top = 190.0
-margin_right = 240.0
-margin_bottom = 210.0
+margin_left = 130.0
+margin_top = 250.0
+margin_right = 270.0
+margin_bottom = 270.0
 mouse_default_cursor_shape = 2
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 6 )
 text = "EXIT"
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="ButtonNewGame" to="." method="_on_ButtonNewGame_pressed"]
+
+[node name="ButtonSkirmish" type="Button" parent="."]
+margin_left = 130.0
+margin_top = 190.0
+margin_right = 270.0
+margin_bottom = 210.0
+mouse_default_cursor_shape = 2
+text = "SKIRMISH"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="ButtonStoryMode" to="." method="_on_ButtonNewGame_pressed"]
 [connection signal="pressed" from="ButtonExit" to="." method="_on_ButtonExit_pressed"]
+[connection signal="pressed" from="ButtonSkirmish" to="." method="_on_ButtonSkirmish_pressed"]

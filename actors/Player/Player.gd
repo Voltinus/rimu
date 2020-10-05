@@ -85,7 +85,7 @@ func powerup(type: String, elem: String) -> void:
 						yield(get_tree().create_timer(0.5), 'timeout')
 				'water':
 					hp = int(min(hp + 7, MAX_HP))
-					emit_signal('hp_changed', float(hp)/MAX_HP)
+					emit_signal('stats_changed', float(hp)/MAX_HP, hp_runes, attack_runes)
 				'earth':
 					immortal = true
 					yield(get_tree().create_timer(3), 'timeout')
@@ -97,9 +97,9 @@ func powerup(type: String, elem: String) -> void:
 				'dark':
 					($'../Enemy' as Enemy).set_darkness()
 				'white':
-					Global.bullets_avoid_player = true
+					Global.set_bullets_avoid_player(true)
 					yield(get_tree().create_timer(5), 'timeout')
-					Global.bullets_avoid_player = false
+					Global.set_bullets_avoid_player(false)
 				'black':
 					Global.stop_time(3)
 				'gray':

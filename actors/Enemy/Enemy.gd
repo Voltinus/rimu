@@ -2,8 +2,8 @@ extends KinematicBody2D
 class_name Enemy
 
 
-const MAX_HP: int = 100
-var hp: int = MAX_HP
+var max_hp: int = 500
+var hp: int = max_hp
 var alive: bool = true
 var _element: String
 
@@ -28,8 +28,21 @@ var states4: Array = []
 
 
 func init(element: String):
+	assert(element in ['fire', 'earth', 'water', 'air', 'dark'])
+	
 	_element = element
 	($AnimatedSprite as AnimatedSprite).animation = element
+	
+	var hps = {
+		'fire': 500,
+		'earth': 600,
+		'water': 700,
+		'air': 800,
+		'dark': 1000
+	}
+	
+	max_hp = hps[element]
+	
 	do_state()
 
 
@@ -51,7 +64,7 @@ func hit(damage: int):
 		return
 	
 	hp = int(max(0, hp - damage))
-	emit_signal('hitted', float(hp)/MAX_HP)
+	emit_signal('hitted', float(hp)/max_hp)
 	($AnimationPlayer as AnimationPlayer).play('damage')
 	if hp == 0:
 		emit_signal('died')
@@ -59,13 +72,13 @@ func hit(damage: int):
 		if _element == 'fire' and get_parent().has_node('LavaWalls'):
 			($'../LavaWalls' as LavaWalls).slide_out()
 	
-	if float(hp)/MAX_HP <= 0.75 and states2 != []:
+	if float(hp)/max_hp <= 0.75 and states2 != []:
 		treshold_reached = 2
 	
-	if float(hp)/MAX_HP <= 0.5 and states3 != []:
+	if float(hp)/max_hp <= 0.5 and states3 != []:
 		treshold_reached = 3
 	
-	if float(hp)/MAX_HP <= 0.25 and states4 != []:
+	if float(hp)/max_hp <= 0.25 and states4 != []:
 		treshold_reached = 4
 
 func _on_Enemy_died():

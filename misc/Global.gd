@@ -46,3 +46,9 @@ func stop_time(t: int) -> void:
 var player_book: String = ''
 
 var bullets_avoid_player = false
+
+func do_bullets_avoid_player():
+	return bullets_avoid_player
+
+func set_bullets_avoid_player(val: bool):
+	bullets_avoid_player = val

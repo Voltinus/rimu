@@ -7,12 +7,6 @@
 [node name="Level1Fire" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="Enemy" parent="Game" index="2"]
+[node name="Enemy" parent="Game" index="1"]
 script = ExtResource( 3 )
-
-[node name="HPBar" parent="GUI/PlayerStats" index="1"]
-scale = Vector2( 112, 1 )
-
-[node name="HPBarOverlay" parent="GUI/PlayerStats" index="2"]
-position = Vector2( 27, 20 )
 [connection signal="died" from="Game/Enemy" to="Game/Enemy" method="_on_Enemy_died"]

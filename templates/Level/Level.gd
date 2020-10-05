@@ -40,7 +40,12 @@ func _on_Enemy_hitted(hp_left: float):
 
 func _on_Enemy_died():
 	($ScrollingBackground as ScrollingBackground).stop_scrolling()
+	$BookSpawner.stop()
+	if _element == 'fire' and has_node('LavaWalls'):
+		($LavaWalls as LavaWalls).slide_out()
+		
 	yield(get_tree().create_timer(2), "timeout")
+	
 	var node: Scroll = Scroll.instance()
 	node.init(_element)
 	node.position = ($Game/Enemy as Enemy).position
