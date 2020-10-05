@@ -2,6 +2,32 @@ extends Node
 
 func _ready():
 	randomize()
+	var save_game := File.new()
+	if not save_game.file_exists("user://highscores.save"):
+		var _ret = save_game.open("user://highscores.save", File.WRITE)
+		var dict = {
+			'fire_highscore':  0,
+			'earth_highscore': 0,
+			'water_highscore': 0,
+			'air_highscore':   0,
+			'dark_highscore':  0
+		}
+		save_game.store_line(to_json(dict))
+	save_game.close()
+
+func get_highscores() -> Dictionary:
+	var save_game := File.new()
+	var _ret = save_game.open("user://highscores.save", File.READ)
+	var dict = parse_json(save_game.get_line())
+	return dict
+
+func set_highscores(dict: Dictionary) -> void:
+	var dir = Directory.new()
+	dir.remove("user://highscores.save")
+	
+	var save_game := File.new()
+	var _ret = save_game.open("user://highscores.save", File.WRITE)
+	save_game.store_line(to_json(dict))
 
 func _process(_delta):
 	if Input.is_action_just_pressed('toggle_fullscreen'):
