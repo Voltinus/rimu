@@ -17,7 +17,7 @@ var textures: Dictionary = {
 var name_colors: Dictionary = {
 	"Rimu":   Color.mediumturquoise,
 	"Feren":  Color.yellow,
-	"Vada":   Color.blue,
+	"Vada":   Color.cornflower,
 	"Aria":   Color.gray,
 	"Lili":   Color.darkgreen,
 	"Darek'h": Color.darkred

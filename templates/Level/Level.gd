@@ -40,7 +40,7 @@ func _on_Enemy_hitted(hp_left: float):
 
 func _on_Enemy_died():
 	($ScrollingBackground as ScrollingBackground).stop_scrolling()
-	$BookSpawner.stop()
+	($BookSpawner as Timer).stop()
 	if _element == 'fire' and has_node('LavaWalls'):
 		($LavaWalls as LavaWalls).slide_out()
 		

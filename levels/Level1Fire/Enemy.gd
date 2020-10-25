@@ -35,7 +35,7 @@ func _ready():
 		{ "shooting": false },
 		{ "callback": "spawn_lava_walls" },
 		{ "label": "start" },
-		{ "callback": "triple_maze" },
+		{ "callback": "maze" },
 		{ "callback": "fire_lines" },
 		{ "next": "start" },
 	]
@@ -64,7 +64,7 @@ func triple_burst():
 		yield(get_tree().create_timer(0.5), 'timeout')
 	callback_ended = true
 
-func triple_maze():
+func maze():
 	shooting = false
 	for _i in range(10):
 		if not alive:
@@ -78,6 +78,10 @@ func triple_maze():
 			var vel = Vector2(0, 1)
 			var pos = Vector2(Global.game_width() * (0.05 + 0.0225*k), -3)
 			node.init(vel, pos, "flame")
+			
+			var scale = randf() + 1.0
+			node.scale = Vector2(scale, scale)
+			
 			get_parent().add_child(node)
 		yield(get_tree().create_timer(1), 'timeout')
 	callback_ended = true

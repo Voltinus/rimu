@@ -2,7 +2,7 @@ extends Area2D
 class_name LavaWalls
 
 
-var counter := 0
+var counter := 0.0
 var delay := 0.5
 
 
@@ -12,11 +12,9 @@ func _ready():
 
 func _process(delta):
 	counter += delta
-	if get_parent().has_node("Player") and counter >= delay:
-		var Player = get_parent().get_node("Player")
-		if Player != null and overlaps_body(Player):
-			Player.hit(1)
-			counter = 0
+	if player_inside and counter >= delay:
+		get_tree().call_group('player', 'hit', 1)
+		counter = 0
 
 
 signal slided
@@ -37,3 +35,16 @@ func slide_out():
 		yield(get_tree().create_timer(0.01), "timeout")
 	
 	self.queue_free()
+
+
+var player_inside = false
+
+
+func _on_LavaWalls_body_entered(body):
+	if body.name == 'Player':
+		player_inside = true
+
+
+func _on_LavaWalls_body_exited(body):
+	if body.name == 'Player':
+		player_inside = false

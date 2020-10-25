@@ -24,6 +24,7 @@ func _start_scrolling():
 	scrolling = true
 
 func _process(delta):
+	if Global.time_stopped: return
 	position.y += delta * _step
 	if position.y > Global.game_height():
 		position.y -= Global.game_height()

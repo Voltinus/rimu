@@ -1,33 +1,34 @@
 extends Node
 
+var highscores = {
+	'fire_highscore':  0,
+	'earth_highscore': 0,
+	'water_highscore': 0,
+	'air_highscore':   0,
+	'dark_highscore':  0
+}
+
 func _ready():
 	randomize()
 	var save_game := File.new()
 	if not save_game.file_exists("user://highscores.save"):
-		var _ret = save_game.open("user://highscores.save", File.WRITE)
-		var dict = {
-			'fire_highscore':  0,
-			'earth_highscore': 0,
-			'water_highscore': 0,
-			'air_highscore':   0,
-			'dark_highscore':  0
-		}
-		save_game.store_line(to_json(dict))
+		save_highscores()
+	else:
+		load_highscores()
 	save_game.close()
 
-func get_highscores() -> Dictionary:
+func load_highscores() -> void:
 	var save_game := File.new()
 	var _ret = save_game.open("user://highscores.save", File.READ)
-	var dict = parse_json(save_game.get_line())
-	return dict
+	highscores = parse_json(save_game.get_line())
 
-func set_highscores(dict: Dictionary) -> void:
+func save_highscores() -> void:
 	var dir = Directory.new()
 	dir.remove("user://highscores.save")
 	
 	var save_game := File.new()
 	var _ret = save_game.open("user://highscores.save", File.WRITE)
-	save_game.store_line(to_json(dict))
+	save_game.store_line(to_json(highscores))
 
 func _process(_delta):
 	if Input.is_action_just_pressed('toggle_fullscreen'):
@@ -67,9 +68,8 @@ func stop_time(t: int) -> void:
 	get_tree().call_group('should_stop_with_time', 'time_stopped')
 	yield(get_tree().create_timer(t), 'timeout')
 	time_stopped = false
-	pass
 
-var player_book: String = ''
+var player_book: String = 'dark'
 
 var bullets_avoid_player = false
 

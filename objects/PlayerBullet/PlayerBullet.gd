@@ -28,6 +28,6 @@ func _on_PlayerBullet_body_entered(body):
 
 
 func time_stopped():
-	($AnimatedSprite as AnimatedSprite).stop()
+	($AnimatedSprite as AnimatedSprite).playing = false
 	while Global.time_stopped: yield(get_tree().create_timer(0.01), 'timeout')
-	($AnimatedSprite as AnimatedSprite).play(bullet_type)
+	($AnimatedSprite as AnimatedSprite).playing = true

@@ -15,8 +15,6 @@ func change_scene(scn: String) -> void:
 	
 	if get_tree().change_scene("res://levels/%s/%s.tscn" % [scn, scn]) != OK:
 		print("Changing scene not OK!")
-	else:
-		print("Scene changed to " + scn)
 	
 	color_rect.color = Color(0, 0, 0, 1)
 	

@@ -34,7 +34,7 @@ func init(element: String):
 	($AnimatedSprite as AnimatedSprite).animation = element
 	
 	var hps = {
-		'fire': 500,
+		'fire': 100,
 		'earth': 600,
 		'water': 700,
 		'air': 800,
@@ -42,6 +42,7 @@ func init(element: String):
 	}
 	
 	max_hp = hps[element]
+	hp = max_hp
 	
 	do_state()
 
@@ -68,6 +69,8 @@ func hit(damage: int):
 	($AnimationPlayer as AnimationPlayer).play('damage')
 	if hp == 0:
 		emit_signal('died')
+		Global.highscores[_element + '_highscore'] = 1
+		Global.save_highscores()
 		alive = false
 		if _element == 'fire' and get_parent().has_node('LavaWalls'):
 			($'../LavaWalls' as LavaWalls).slide_out()
