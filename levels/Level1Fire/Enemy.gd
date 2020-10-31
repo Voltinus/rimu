@@ -1,8 +1,8 @@
 extends "res://actors/Enemy/Enemy.gd"
 
 
-var LavaWalls = preload("res://objects/LavaWalls/LavaWalls.tscn")
-var FireLine  = preload("res://objects/FireLine/FireLine.tscn")
+var LavaWalls = preload("res://levels/Level1Fire/Objects/LavaWalls/LavaWalls.tscn")
+var FireLine  = preload("res://levels/Level1Fire/Objects/FireLine/FireLine.tscn")
 
 
 func _ready():

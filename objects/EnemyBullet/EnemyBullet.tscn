@@ -35,14 +35,14 @@ animations = [ {
 "name": "dark",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
-"loop": true,
-"name": "flame",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "water",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "earth",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ) ],
@@ -50,9 +50,9 @@ animations = [ {
 "name": "air",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
 "loop": true,
-"name": "earth",
+"name": "flame",
 "speed": 5.0
 } ]
 

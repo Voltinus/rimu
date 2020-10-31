@@ -25,13 +25,10 @@ func _physics_process(delta: float) -> void:
 	if Global.do_bullets_avoid_player():
 		var player_position: Vector2 = get_tree().get_nodes_in_group('player')[0].position
 		var distance = player_position.distance_to(position)
-		var direct_vector = (player_position - position).normalized()
-		var angle_to_player = velocity.angle_to(direct_vector)
-		velocity += Vector2(cos(angle_to_player), -sin(angle_to_player)) * (5/distance)
+		velocity += (position - player_position).normalized() / distance
 		velocity = velocity.normalized()
 	
-	position.x += velocity.x * _SPEED * delta * factor
-	position.y += velocity.y * _SPEED * delta * factor
+	position += velocity * _SPEED * delta * factor
 	
 	if position.x < -5 or position.x > Global.game_width() + 5 or position.y < -5 or position.y > Global.game_height() + 5:
 		self.queue_free()

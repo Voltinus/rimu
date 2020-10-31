@@ -1,4 +1,7 @@
 .DS_Store
 *~
-.import/
 logs/
+.import/
+export.cfg
+export_presets.cfg
+*.translation

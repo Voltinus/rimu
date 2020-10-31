@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "LavaWalls",
 "language": "GDScript",
-"path": "res://objects/LavaWalls/LavaWalls.gd"
+"path": "res://levels/Level1Fire/Objects/LavaWalls/LavaWalls.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",

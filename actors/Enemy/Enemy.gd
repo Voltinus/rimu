@@ -21,7 +21,7 @@ var states: Array = [
 ]
 
 # These states are copied by reference to 'states'
-# after reaching tresholds 75%, 50% and 25% hp
+# after reaching tresholds of 75%, 50% and 25% hp
 var states2: Array = []
 var states3: Array = []
 var states4: Array = []
