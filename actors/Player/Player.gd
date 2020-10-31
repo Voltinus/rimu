@@ -61,7 +61,7 @@ func hit(damage: int) -> void:
 	if hp == 0:
 		emit_signal('died')
 		print('dead')
-		self.queue_free()
+		($ShootTimer as Timer).stop()
 
 
 func _on_Enemy_died() -> void:

@@ -13,6 +13,8 @@ signal hitted(hp_left)
 signal died
 
 var shooting: bool = true
+var shooting_mode: String = 'single'
+
 var darkness := false
 
 var current_state: int = 0
@@ -109,6 +111,9 @@ func do_state():
 		if states[current_state].has('shooting'):
 			shooting = states[current_state].shooting
 		
+		if states[current_state].has('shooting_mode'):
+			shooting_mode = states[current_state].shooting_mode
+		
 		if states[current_state].has('callback'):
 			call(states[current_state].callback)
 		
@@ -137,12 +142,15 @@ func do_state():
 				2:
 					states = states2
 					states2 = []
+					print('changed state to 2')
 				3:
 					states = states3
 					states3 = []
+					print('changed state to 3')
 				4:
 					states = states4
 					states4 = []
+					print('changed state to 4')
 			current_state = 0
 			treshold_reached = 0
 		
@@ -168,10 +176,17 @@ func _on_ShootTimer_timeout():
 	if not alive or !shooting or get_node('../Player') == null:
 		return
 	
-	var node = EnemyBullet.instance()
-	var vel = ((get_node('../Player') as Node2D).position - position).normalized()
-	node.init(vel, position, _element)
-	$'../Bullets'.add_child(node)
+	if shooting_mode == 'single':
+		var node = EnemyBullet.instance()
+		var vel = ((get_node('../Player') as Node2D).position - position).normalized()
+		node.init(vel, position, _element)
+		$'../Bullets'.add_child(node)
+	elif shooting_mode == 'triple':
+		for i in range(3):
+			var node = EnemyBullet.instance()
+			var vel = ((get_node('../Player') as Node2D).position - position + Vector2(i-1, 0)).normalized()
+			node.init(vel, position, _element)
+			$'../Bullets'.add_child(node)
 
 
 func set_darkness():
@@ -183,3 +198,13 @@ func time_stopped():
 	($AnimatedSprite as AnimatedSprite).playing = false
 	while Global.time_stopped: yield(get_tree().create_timer(0.01), 'timeout')
 	($AnimatedSprite as AnimatedSprite).playing = true
+
+
+func _on_Player_died():
+	current_state = 0
+	states = [
+		{ 'shooting': false },
+		{ 'target': Vector2(0.5, 0.1) }
+	]
+	
+	do_state()
