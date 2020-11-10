@@ -36,7 +36,7 @@ func init(element: String):
 	($AnimatedSprite as AnimatedSprite).animation = element
 	
 	var hps = {
-		'fire': 100,
+		'fire': 500,
 		'earth': 600,
 		'water': 700,
 		'air': 800,
@@ -74,8 +74,19 @@ func hit(damage: int):
 		Global.highscores[_element + '_highscore'] = 1
 		Global.save_highscores()
 		alive = false
-		if _element == 'fire' and get_parent().has_node('LavaWalls'):
-			($'../LavaWalls' as LavaWalls).slide_out()
+		
+		current_state = 0
+		states = [
+			{ 'shooting': false },
+			{ 'target': Vector2(0.5, 0.1) }
+		]
+		
+		do_state()
+		
+		if _element == 'fire':
+			get_tree().call_group('fire_lines', 'enemy_died')
+			if get_parent().has_node('LavaWalls'):
+				($'../LavaWalls' as LavaWalls).slide_out()
 	
 	if float(hp)/max_hp <= 0.75 and states2 != []:
 		treshold_reached = 2
@@ -113,6 +124,7 @@ func do_state():
 		
 		if states[current_state].has('shooting_mode'):
 			shooting_mode = states[current_state].shooting_mode
+			print('shooting mode set to ' + shooting_mode)
 		
 		if states[current_state].has('callback'):
 			call(states[current_state].callback)
@@ -184,13 +196,13 @@ func _on_ShootTimer_timeout():
 	elif shooting_mode == 'triple':
 		for i in range(3):
 			var node = EnemyBullet.instance()
-			var vel = ((get_node('../Player') as Node2D).position - position + Vector2(i-1, 0)).normalized()
+			var vel = ((get_node('../Player') as Node2D).position - position + Vector2((i-1)*20, 0)).normalized()
 			node.init(vel, position, _element)
 			$'../Bullets'.add_child(node)
 	elif shooting_mode == 'penta':
 		for i in range(5):
 			var node = EnemyBullet.instance()
-			var vel = ((get_node('../Player') as Node2D).position - position + Vector2(i-2, 0)).normalized()
+			var vel = ((get_node('../Player') as Node2D).position - position + Vector2((i-2)*20, 0)).normalized()
 			node.init(vel, position, _element)
 			$'../Bullets'.add_child(node)
 	elif shooting_mode == 'burst':

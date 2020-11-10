@@ -35,6 +35,7 @@ func _ready():
 		{ 'target': Vector2(0.5, 0.1) },
 		{ 'shooting': false },
 		{ 'callback': 'spawn_lava_walls' },
+		
 		{ 'label': 'start' },
 		{ 'callback': 'maze' },
 		{ 'callback': 'fire_lines' },
@@ -45,11 +46,27 @@ func _ready():
 	]
 	
 	states4 = [
+		{ 'callback': 'spawn_bottom_fire_line' },
+		
+		{ 'label': 'start' },
 		{ 'shooting': true },
+		
 		{ 'shooting_mode': 'burst' },
+		{ 'callback': 'fire_line' },
 		{ 'target': Vector2(0.5, 0.1) },
+		{ 'wait': 3 },
+		
+		{ 'shooting_mode': 'penta' },
+		{ 'callback': 'fire_line' },
 		{ 'target': Vector2(0.2, 0.1) },
-		{ 'target': Vector2(0.8, 0.2) }
+		{ 'wait': 3 },
+		
+		{ 'shooting_mode': 'triple' },
+		{ 'callback': 'upper_corners_shooting' },
+		{ 'target': Vector2(0.8, 0.2) },
+		{ 'wait': 3 },
+		
+		{ 'next': 'start' }
 	]
 
 func byle_jak():
@@ -126,13 +143,20 @@ func fire_lines():
 		while darkness: yield(get_tree().create_timer(0.01), 'timeout')
 		while Global.time_stopped: yield(get_tree().create_timer(0.01), 'timeout')
 		var node = FireLine.instance()
-		var node2 = FireLine.instance()
-		node.position = Vector2(Global.game_width() * 0.25, Global.game_height() * (0.1 + i*0.3 + randf()/5))
-		node2.position = node.position + Vector2(Global.game_width() * 0.5, 0)
+		node.position = Vector2(0, Global.game_height() * (0.1 + i*0.3 + randf()/5))
 		get_parent().add_child(node)
-		get_parent().add_child(node2)
+		node.init()
 		yield(get_tree().create_timer(0.3), 'timeout')
 	yield(get_tree().create_timer(5), 'timeout')
+	callback_ended = true
+
+func fire_line():
+	while darkness: yield(get_tree().create_timer(0.01), 'timeout')
+	while Global.time_stopped: yield(get_tree().create_timer(0.01), 'timeout')
+	var node = FireLine.instance()
+	node.position = Vector2(0, Global.game_height() * (0.3 + randf()/10))
+	get_parent().add_child(node)
+	node.init()
 	callback_ended = true
 
 func spawn_lava_walls():
@@ -141,7 +165,7 @@ func spawn_lava_walls():
 	callback_ended = true
 
 func lower_corners_shooting():
-	for i in range(25):
+	for _i in range(25):
 		for j in range(2):
 			var node: EnemyBullet = EnemyBullet.instance()
 			
@@ -160,7 +184,27 @@ func lower_corners_shooting():
 			yield(get_tree().create_timer(0.2), 'timeout')
 	callback_ended = true
 
-func _on_ShootTimer_timeout():
+func upper_corners_shooting():
+	for _i in range(10):     # Number of bursts
+		for j in range(2):     # Number of burst sources 
+			var d := randf()
+			for k in range(24):  # Number of bullets in a burst
+				var node: EnemyBullet = EnemyBullet.instance()
+				var vel: Vector2 = Vector2(sin((k/24.0)*TAU + d), cos((k/24.0)*TAU + d))
+				node.init(vel, Vector2(Global.game_width() * j, 0), _element)
+				get_parent().add_child(node)
+			yield(get_tree().create_timer(0.15), 'timeout')
+		yield(get_tree().create_timer(0.2), 'timeout')
+	callback_ended = true
+
+func spawn_bottom_fire_line():
+	var node = FireLine.instance()
+	node.position = Vector2(0, Global.game_height() - 12)
+	get_parent().add_child(node)
+	node.init({'time_after': -1})
+	callback_ended = true
+
+func asdf_on_ShootTimer_timeout():
 	if not alive or !shooting or darkness or (get_node('../Player') as Player) == null:
 		return
 	
@@ -172,3 +216,4 @@ func _on_ShootTimer_timeout():
 		else:
 			node.init(vel, position, _element)
 		$'../Bullets'.add_child(node)
+
