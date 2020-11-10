@@ -91,9 +91,8 @@ func powerup(type: String, elem: String) -> void:
 					yield(get_tree().create_timer(3), 'timeout')
 					immortal = false
 				'air':
-					($ShootTimer as Timer).wait_time /= 2
-					yield(get_tree().create_timer(5), 'timeout')
-					($ShootTimer as Timer).wait_time *= 2
+					#$Shield.visible = 
+					pass
 				'dark':
 					($'../Enemy' as Enemy).set_darkness()
 				'white':
