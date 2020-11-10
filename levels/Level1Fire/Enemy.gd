@@ -39,13 +39,17 @@ func _ready():
 		{ 'callback': 'maze' },
 		{ 'callback': 'fire_lines' },
 		{ 'shooting': true },
-		{ 'callback': 'corner_shooting' },
+		{ 'callback': 'lower_corners_shooting' },
 		{ 'shooting': false },
 		{ 'next': 'start' },
 	]
 	
 	states4 = [
-		
+		{ 'shooting': true },
+		{ 'shooting_mode': 'burst' },
+		{ 'target': Vector2(0.5, 0.1) },
+		{ 'target': Vector2(0.2, 0.1) },
+		{ 'target': Vector2(0.8, 0.2) }
 	]
 
 func byle_jak():
@@ -136,7 +140,7 @@ func spawn_lava_walls():
 	($'/root/Level1Fire/Game' as Node2D).add_child(lava_walls_instance)
 	callback_ended = true
 
-func corner_shooting():
+func lower_corners_shooting():
 	for i in range(25):
 		for j in range(2):
 			var node: EnemyBullet = EnemyBullet.instance()
@@ -154,6 +158,7 @@ func corner_shooting():
 			$'../Bullets'.add_child(node)
 			
 			yield(get_tree().create_timer(0.2), 'timeout')
+	callback_ended = true
 
 func _on_ShootTimer_timeout():
 	if not alive or !shooting or darkness or (get_node('../Player') as Player) == null:

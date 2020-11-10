@@ -1,23 +1,22 @@
 extends Area2D
 
 
-const TIME_BEFORE = 3           # Time in seconds before fire line gets ignited
-const TIME_AFTER = 3            # Time in seconds after the line starts to fade out
-const TIME_FADE_OUT = 1         # Time in seconds of the line fading out
-const FADE_OUT_PRECISION = 10   # Fade out precision, how many steps would fade out take
+const time_before = 3           # Time in seconds before fire line gets ignited
+const time_after = 3            # Time in seconds after the line starts to fade out
+const time_fade_out = 1         # Time in seconds of the line fading out
+const fade_out_precision = 10   # Fade out precision, how many steps would fade out take
 
 func _ready():
-	yield(get_tree().create_timer(TIME_BEFORE), "timeout")
+	yield(get_tree().create_timer(time_before), "timeout")
 	($AnimatedSprite as AnimatedSprite).play("fire")
 	burning = true
-	yield(get_tree().create_timer(TIME_AFTER), "timeout")
-	for i in range(FADE_OUT_PRECISION):
+	yield(get_tree().create_timer(time_after), "timeout")
+	for i in range(fade_out_precision):
 		var color = Color.white
-		color.a = (FADE_OUT_PRECISION-i)/float(FADE_OUT_PRECISION)
+		color.a = (fade_out_precision-i)/float(fade_out_precision)
 		modulate = color
-		yield(get_tree().create_timer(TIME_FADE_OUT/float(FADE_OUT_PRECISION)), "timeout")
+		yield(get_tree().create_timer(time_fade_out/float(fade_out_precision)), "timeout")
 	self.queue_free()
-
 
 
 var burning = false    # States if line is on fire
@@ -29,7 +28,6 @@ func _physics_process(delta):
 	if accumulator >= INTERVAL and player_inside and burning:
 		player.hit(1)
 		accumulator = 0
-
 
 
 var player
