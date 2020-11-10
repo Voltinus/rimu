@@ -76,7 +76,7 @@ func powerup(type: String, elem: String) -> void:
 					for _i in range(3):
 						for _j in range(5):
 							for i in range(24):
-								var d = 0
+								var d := 0
 								var node : PlayerBullet = Bullet.instance()
 								var vel: Vector2 = Vector2(sin((i/24.0)*TAU + d), cos((i/24.0)*TAU + d))
 								(node as PlayerBullet).init(vel, position, "round")
@@ -91,8 +91,15 @@ func powerup(type: String, elem: String) -> void:
 					yield(get_tree().create_timer(3), 'timeout')
 					immortal = false
 				'air':
-					#$Shield.visible = 
-					pass
+					($Shield as Node2D).visible = true
+					$CollisionShape2D.shape = CircleShape2D.new()
+					$CollisionShape2D.shape.radius = 10
+					immortal = true
+					yield(get_tree().create_timer(5), 'timeout')
+					$CollisionShape2D.shape = RectangleShape2D.new()
+					$CollisionShape2D.shape.extents = Vector2(1, 1)
+					immortal = false
+					($Shield as Node2D).visible = false
 				'dark':
 					($'../Enemy' as Enemy).set_darkness()
 				'white':

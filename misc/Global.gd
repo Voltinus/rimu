@@ -69,7 +69,7 @@ func stop_time(t: int) -> void:
 	yield(get_tree().create_timer(t), 'timeout')
 	time_stopped = false
 
-var player_book: String = 'white'
+var player_book: String = 'air'
 
 var bullets_avoid_player = false
 

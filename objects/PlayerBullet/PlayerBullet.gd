@@ -6,7 +6,7 @@ var velocity := Vector2()
 var bullet_type: String
 
 
-func init(vel, pos, type = "default"):
+func init(vel, pos, type = 'default'):
 	velocity = vel.normalized()
 	position = pos
 	bullet_type = type
@@ -22,7 +22,7 @@ func _physics_process(delta):
 
 
 func _on_PlayerBullet_body_entered(body):
-	if body.has_method("hit"):
+	if body.has_method('hit'):
 		body.hit(1)
 		self.queue_free()
 

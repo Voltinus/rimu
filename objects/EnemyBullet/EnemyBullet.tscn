@@ -9,17 +9,14 @@
 [ext_resource path="res://objects/EnemyBullet/bullet_round_water.png" type="Texture" id=7]
 
 [sub_resource type="AtlasTexture" id=1]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 3, 5 )
 
 [sub_resource type="AtlasTexture" id=2]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 3, 0, 3, 5 )
 
 [sub_resource type="AtlasTexture" id=3]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 6, 0, 3, 5 )
 
@@ -30,19 +27,9 @@ animations = [ {
 "name": "fire",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "dark",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "air",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
-"loop": true,
-"name": "flame",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ) ],
@@ -50,9 +37,19 @@ animations = [ {
 "name": "water",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "dark",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "earth",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "flame",
 "speed": 5.0
 } ]
 
