@@ -59,8 +59,9 @@ position = Vector2( 120, 250 )
 
 [node name="GUI" parent="." instance=ExtResource( 3 )]
 [connection signal="timeout" from="BookSpawner" to="." method="_on_BookSpawner_timeout"]
-[connection signal="died" from="Game/Enemy" to="." method="_on_Enemy_died"]
 [connection signal="died" from="Game/Enemy" to="Game/Player" method="_on_Enemy_died"]
+[connection signal="died" from="Game/Enemy" to="." method="_on_Enemy_died"]
 [connection signal="hitted" from="Game/Enemy" to="." method="_on_Enemy_hitted"]
 [connection signal="died" from="Game/Player" to="Game/Enemy" method="_on_Player_died"]
+[connection signal="died" from="Game/Player" to="GUI" method="_on_Player_died"]
 [connection signal="stats_changed" from="Game/Player" to="GUI" method="_on_Player_stats_changed"]

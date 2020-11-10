@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "GUI",
 "language": "GDScript",
-"path": "res://templates/Level/GUI.gd"
+"path": "res://templates/Level/GUI/GUI.gd"
 }, {
 "base": "Area2D",
 "class": "LavaWalls",
