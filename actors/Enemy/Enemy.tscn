@@ -20,40 +20,40 @@ atlas = ExtResource( 1 )
 region = Rect2( 40, 0, 20, 30 )
 
 [sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 40, 30 )
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 20, 30 )
 
 [sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 3 )
-region = Rect2( 40, 0, 40, 30 )
+atlas = ExtResource( 2 )
+region = Rect2( 20, 0, 20, 30 )
 
 [sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 3 )
-region = Rect2( 80, 0, 40, 30 )
+atlas = ExtResource( 2 )
+region = Rect2( 40, 0, 20, 30 )
 
 [sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 20, 30 )
 
 [sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 6 )
 region = Rect2( 20, 0, 20, 30 )
 
 [sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 2 )
+atlas = ExtResource( 6 )
 region = Rect2( 40, 0, 20, 30 )
 
 [sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 6 )
-region = Rect2( 0, 0, 20, 30 )
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 40, 30 )
 
 [sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 6 )
-region = Rect2( 20, 0, 20, 30 )
+atlas = ExtResource( 3 )
+region = Rect2( 40, 0, 40, 30 )
 
 [sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 6 )
-region = Rect2( 40, 0, 20, 30 )
+atlas = ExtResource( 3 )
+region = Rect2( 80, 0, 40, 30 )
 
 [sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 4 )
@@ -74,19 +74,19 @@ animations = [ {
 "name": "fire",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 5 ) ],
-"loop": true,
-"name": "dark",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "air",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
 "name": "water",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 11 ) ],
+"loop": true,
+"name": "dark",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
@@ -124,6 +124,7 @@ script = ExtResource( 5 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 16 )
 animation = "fire"
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

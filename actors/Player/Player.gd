@@ -83,13 +83,16 @@ func powerup(type: String, elem: String) -> void:
 								get_parent().add_child(node)
 							yield(get_tree().create_timer(0.15), 'timeout')
 						yield(get_tree().create_timer(0.5), 'timeout')
+						
 				'water':
 					hp = int(min(hp + 7, MAX_HP))
 					emit_signal('stats_changed', float(hp)/MAX_HP, hp_runes, attack_runes)
+					
 				'earth':
 					immortal = true
 					yield(get_tree().create_timer(3), 'timeout')
 					immortal = false
+					
 				'air':
 					($Shield as Node2D).visible = true
 					$CollisionShape2D.shape = CircleShape2D.new()
@@ -100,13 +103,17 @@ func powerup(type: String, elem: String) -> void:
 					$CollisionShape2D.shape.extents = Vector2(1, 1)
 					immortal = false
 					($Shield as Node2D).visible = false
+					
 				'dark':
 					($'../Enemy' as Enemy).set_darkness()
+					
 				'white':
 					Global.set_bullets_avoid_player(true)
 					yield(get_tree().create_timer(5), 'timeout')
 					Global.set_bullets_avoid_player(false)
+					
 				'black':
 					Global.stop_time(3)
+					
 				'gray':
 					get_tree().call_group('enemy_bullets', 'change_to_player_bullet')
