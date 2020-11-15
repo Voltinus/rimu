@@ -5,6 +5,15 @@ const _SPEED = 100
 var velocity := Vector2(0, 1)
 
 
+func _ready():
+	var rand : int = randi() % 3
+	var polygon := get_node('CollisionPolygon' + str(rand+1))
+	
+	($Sprite as Sprite).frame = rand
+	polygon.disabled = false
+	polygon.visible = true
+
+
 func _physics_process(delta: float) -> void:
 	if Global.time_stopped: return
 	

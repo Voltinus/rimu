@@ -8,7 +8,9 @@ func _ready():
 	states = [
 		{ 'shooting': false },
 		{ 'callback': 'lower_corners_shooting' },
-		{ 'callback': 'diamonds_and_rocks' }
+		{ 'shooting': true },
+		{ 'shooting_mode': 'triple' },
+		{ 'callback': 'falling_rocks' }
 	]
 
 
@@ -35,10 +37,12 @@ func lower_corners_shooting():
 	callback_ended = true
 
 
-func diamonds_and_rocks():
+func falling_rocks():
 	for i in range(10):
 		for j in range(2):
 			var node = Rock.instance()
 			node.position = Vector2(Global.game_width() * (0.2 + 0.6*j), 0)
 			get_parent().add_child(node)
 		yield(get_tree().create_timer(0.5), 'timeout')
+	yield(get_tree().create_timer(3), 'timeout')
+	callback_ended = true

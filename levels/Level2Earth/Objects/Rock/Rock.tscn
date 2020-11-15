@@ -1,24 +1,28 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://levels/Level2Earth/Objects/Rock/Rock.gd" type="Script" id=1]
-
-[sub_resource type="OpenSimplexNoise" id=1]
-
-[sub_resource type="NoiseTexture" id=2]
-width = 24
-height = 36
-noise = SubResource( 1 )
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 12, 18 )
+[ext_resource path="res://levels/Level2Earth/Objects/Rock/obs_earth_rock.png" type="Texture" id=2]
 
 [node name="Rock" type="Area2D"]
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = SubResource( 2 )
+texture = ExtResource( 2 )
+hframes = 3
+frame = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionPolygon1" type="CollisionPolygon2D" parent="."]
 visible = false
-shape = SubResource( 3 )
+polygon = PoolVector2Array( -1.96272, -14.5127, 6.65255, 0.0957565, 7.21441, 13.2996, -2.61823, 13.4869, -5.70848, -0.0915318 )
+disabled = true
+
+[node name="CollisionPolygon2" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PoolVector2Array( -0.745342, -14.1382, 4.12416, -0.0915318, 5.0606, 14.8915, -5.3339, 15.0788, -5.52119, 4.12246 )
+disabled = true
+
+[node name="CollisionPolygon3" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PoolVector2Array( 1.31483, -14.0445, 4.96695, -0.372463, 5.52882, 14.6106, -5.80213, 14.3297, -5.52119, 4.12246 )
+disabled = true
 [connection signal="body_entered" from="." to="." method="_on_Rock_body_entered"]
