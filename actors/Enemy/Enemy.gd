@@ -71,7 +71,7 @@ func hit(damage: int):
 	($AnimationPlayer as AnimationPlayer).play('damage')
 	if hp == 0:
 		emit_signal('died')
-		Global.highscores[_element + '_highscore'] = 1
+		Global.set_highscore(_element, 1)
 		Global.save_highscores()
 		alive = false
 		
@@ -209,14 +209,9 @@ func _on_ShootTimer_timeout():
 		burst(24)
 
 
-func set_darkness():
-	darkness = true
-	yield(get_tree().create_timer(3), 'timeout')
-	darkness = false
-
 func time_stopped():
 	($AnimatedSprite as AnimatedSprite).playing = false
-	while Global.time_stopped: yield(get_tree().create_timer(0.01), 'timeout')
+	while Global.time_stopped: yield(get_tree().create_timer(0.1), 'timeout')
 	($AnimatedSprite as AnimatedSprite).playing = true
 
 

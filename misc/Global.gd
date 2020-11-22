@@ -30,6 +30,11 @@ func save_highscores() -> void:
 	var _ret = save_game.open("user://highscores.save", File.WRITE)
 	save_game.store_line(to_json(highscores))
 
+func set_highscore(element, score):
+	if score > highscores[element + '_highscore']:
+		highscores[element + '_highscore'] = score
+		save_highscores()
+
 func _process(_delta):
 	if Input.is_action_just_pressed('toggle_fullscreen'):
 		OS.window_fullscreen = !OS.window_fullscreen
@@ -78,3 +83,11 @@ func do_bullets_avoid_player():
 
 func set_bullets_avoid_player(val: bool):
 	bullets_avoid_player = val
+
+
+var darkness := false
+
+func set_darkness():
+	darkness = true
+	yield(get_tree().create_timer(3), 'timeout')
+	darkness = false

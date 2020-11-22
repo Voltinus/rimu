@@ -3,6 +3,8 @@
 [ext_resource path="res://levels/Level1Fire/Objects/LavaWalls/LavaWalls.png" type="Texture" id=1]
 [ext_resource path="res://levels/Level1Fire/Objects/LavaWalls/LavaWalls.gd" type="Script" id=2]
 
+
+
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 20, 150 )
 

@@ -6,16 +6,23 @@ const _SPEED = 100
 var velocity: Vector2
 var _element: String
 var factor: int
+var bouncing: bool = false
 
 var PlayerBullet := preload('res://objects/PlayerBullet/PlayerBullet.tscn')
 
 
-func init(vel: Vector2, pos: Vector2, elem: String) -> void:
+func init(vel: Vector2, pos: Vector2, elem: String, params = {}) -> void:
+	if Global.darkness:
+		self.queue_free()
+		return
+	
 	factor = int(vel.length())
 	if factor == 0: factor = 1
 	velocity = vel.normalized()
 	position = pos
 	_element = elem
+	if params.has('bouncing'):
+		bouncing = params.bouncing
 	($AnimatedSprite as AnimatedSprite).play(elem)
 
 
@@ -29,6 +36,18 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.normalized()
 	
 	position += velocity * _SPEED * delta * factor
+	
+	if bouncing:
+		# approx bullet width
+		var w = 5
+		
+		if position.x < 0:
+			position.x *= -1
+			velocity.x *= -1
+		elif position.x + w > Global.game_width():
+			var beyond_by = (position.x + w) - Global.game_width()
+			position.x = Global.game_width() - beyond_by
+			velocity.x *= -1
 	
 	if position.x < -5 or position.x > Global.game_width() + 5 or position.y < -5 or position.y > Global.game_height() + 5:
 		self.queue_free()

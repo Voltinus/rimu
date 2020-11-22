@@ -95,17 +95,21 @@ func powerup(type: String, elem: String) -> void:
 					
 				'air':
 					($Shield as Node2D).visible = true
+					#warning-ignore:unsafe_property_access
 					$CollisionShape2D.shape = CircleShape2D.new()
+					#warning-ignore:unsafe_property_access
 					$CollisionShape2D.shape.radius = 10
 					immortal = true
 					yield(get_tree().create_timer(5), 'timeout')
+					#warning-ignore:unsafe_property_access
 					$CollisionShape2D.shape = RectangleShape2D.new()
+					#warning-ignore:unsafe_property_access
 					$CollisionShape2D.shape.extents = Vector2(1, 1)
 					immortal = false
 					($Shield as Node2D).visible = false
 					
 				'dark':
-					($'../Enemy' as Enemy).set_darkness()
+					Global.set_darkness()
 					
 				'white':
 					Global.set_bullets_avoid_player(true)

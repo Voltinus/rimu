@@ -7,8 +7,5 @@
 [node name="Level2Earth" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="BookSpawner" parent="." index="0"]
-wait_time = 1.0
-
 [node name="Enemy" parent="Game" index="1"]
 script = ExtResource( 3 )

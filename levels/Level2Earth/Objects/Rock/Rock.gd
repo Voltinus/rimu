@@ -6,8 +6,8 @@ var velocity := Vector2(0, 1)
 
 
 func _ready():
-	var rand : int = randi() % 3
-	var polygon := get_node('CollisionPolygon' + str(rand+1))
+	var rand: int = randi() % 3
+	var polygon: CollisionPolygon2D = get_node('CollisionPolygon' + str(rand+1))
 	
 	($Sprite as Sprite).frame = rand
 	polygon.disabled = false
