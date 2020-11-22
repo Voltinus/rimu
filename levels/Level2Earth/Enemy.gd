@@ -14,7 +14,12 @@ func _ready():
 		{ 'callback': 'falling_rocks' },
 		
 		{ 'shooting': false },
-		{ 'callback': 'shoot_off_walls' }
+		{ 'callback': 'shoot_off_walls' },
+	]
+	
+	states2 = [
+		{ 'shooting': false },
+		{ 'callback': 'rock_maze' }
 	]
 
 
@@ -71,4 +76,18 @@ func shoot_off_walls():
 			$'../Bullets'.add_child(node)
 		yield(get_tree().create_timer(0.2), 'timeout')
 	yield(get_tree().create_timer(2), 'timeout')
+	callback_ended = true
+
+
+func rock_maze():
+	for _i in range(5):
+		var hole = randi() % 24
+		
+		for j in range(24):
+			if j == hole:
+				continue
+			var node = Rock.instance()
+			node.position = Vector2(j*10 + 10, 0)
+			get_parent().add_child(node)
+		yield(get_tree().create_timer(2), 'timeout')
 	callback_ended = true
